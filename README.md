@@ -7,7 +7,7 @@ Run
 
 ```bash
 docker-compose build
-docker-compose run
+docker-compose up
 ```
 
 This will create and run all relevant docker containers (one for nginx, one for the django app, and one for the postgresql database)
