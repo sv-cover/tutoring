@@ -3,6 +3,10 @@
 *.log
 *.sql
 *.sqlite
+
+# Python files       #
+#####################
+__pycache__
  
 # OS generated files #
 ######################
