@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Offers | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<form id="searchform" action="{% url 'tutors:offer_list' %}" method="get" accept-charset="utf-8">
+	<div class="input-group">
+      <input id="input-search-subject" type="text" class="form-control" name="q" placeholder="Search for subject..." value="{{q}}">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+    </div>
+</form>
+
+<!-- <hr/> -->
+<br/>
+{% for offer in object_list %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="center">
+      {% if offer.is_anonymous %}
+      <img src="{% static 'default_profile.jpg' %}" alt="Generic male portrait" height="120" width="120" class="img-circle"/>
+      <h3>Anonymous</h3>
+      {% else %}
+      <img src="{{offer.owner.foto_url}}" alt="Portrait of {{offer.owner.full_name}}" height="120" width="120" class="img-circle"/>
+      <h3>{{ offer.owner.full_name }}</h3>
+      {% endif %}
+    </div>
+    <hr/>
+    <p>
+      <!-- <i class="fa fa-quote-left" aria-hidden="true"></i> -->
+      {{offer.description|linebreaksbr}}
+      <!-- <i class="fa fa-quote-right" aria-hidden="true"></i> -->
+    </p>
+    <hr/>
+    <div class="row">
+       <div class="col-sm-6">
+          Teaches subjects:
+          <ul class="list-nodots">
+            {% for offered_subject in offer.offered_subjects.all %}
+            <li><span class="label label-primary">
+              <i class="fa fa-book" aria-hidden="true"></i>
+              &nbsp;
+              {{offered_subject.name}}
+            </span></li>
+            {% endfor %}
+          </ul>
+       </div>
+       <div class="col-sm-6">
+        Speaks languages:
+        <ul class="list-nodots">
+          {% for offered_language in offer.offered_languages.all %}
+          <li><span class="label label-info">
+            <i class="fa fa-globe" aria-hidden="true"></i>
+            &nbsp;
+            {{offered_language.name}}
+          </span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      {% if offer.owner == request.user %}
+      <a href="{% url 'tutors:offer_update' %}" class="btn btn-warning"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit</a>
+      &nbsp;&nbsp;
+      <a href="#" class="btn btn-default" role="button" disabled><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
+      {% else %}
+      <a href="{% url 'CoverAccounts:contact' pk=offer.owner.pk%}?subject=I need tutoring" class="btn btn-success" role="button"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+<center>
+
+<!-- <i class="fa fa-question-circle-o fa-3x" aria-hidden="true"></i> -->
+<!-- <img class="img-circle" src="https://s-media-cache-ak0.pinimg.com/236x/91/51/96/915196411a87a469c69e06057b508881.jpg" />
+<br/><br/>
+<h3 class="media-heading">These aren't the tutors you're looking for?</h3>
+<p>Please <a href="mailto:studcee@svcover.nl">let us know </a> so we can find an appropriate tutor for you.</p>
+</center> -->
+
+{% endblock %}

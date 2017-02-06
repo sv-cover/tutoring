@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if title %}
+<h1> {{title}}</h1>
+{% endif %}
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+
+<input class='btn btn-default' type='submit' value='{% if btn_title %}{{ btn_title }}{% else %}Submit{% endif %}' />
+
+</form>
+{% endblock %}

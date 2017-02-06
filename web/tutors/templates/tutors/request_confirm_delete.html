@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3>Confirm delete</h3>
+
+<p>All data with regards to your tutoring request will be lost. Do you want to continue?</p>
+<br/>
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+
+<input class='btn btn-danger' type='submit' value='Continue and delete' />
+
+</form>
+{% endblock %}

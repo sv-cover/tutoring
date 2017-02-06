@@ -1,0 +1,127 @@
+{% load tutor_extras %}
+{% get_user_is_tutor as user_is_tutor %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      .center {
+        text-align: center;
+      }
+      .btn-margin-left {
+        margin-left: 4px;
+      }
+
+      .list-nodots {
+        list-style-type: none;
+        padding-left: 6pt;
+      }
+      .list-nodots li {
+        margin-top: 2pt
+      }
+    </style>
+
+    <title>{% block head_title %}Studcee Tutoring{% endblock %}</title>
+  </head>
+
+  <body>
+    {% block navbar %}
+    {% include "navbar.html" %}
+    {% endblock %}
+
+    <div class="container">
+      <!--<div class="jumbotron">
+        <h1 class="display-3">Want to become a tutor?</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-2">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+      </div>-->
+
+      {% block container %}
+      <div class="row">
+        <div class="col-md-8">
+        {% block alerts %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+        <br/>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Request tutoring</h3>
+            </div>
+            <div class="panel-body">
+          		<p>Are you in need of a tutor? Just fill in this form and you'll get help!</p>
+          		<a href="{% url 'tutors:request_create' %}" class="btn btn-success">
+          			<i class="fa fa-plus" aria-hidden="true"></i>
+                &nbsp;
+          			Create request
+          		</a>
+            </div>
+          </div>
+          {% if not user_is_tutor %}
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <!-- <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i> -->
+                  Become a tutor
+                </h3>
+              </div>
+              <div class="panel-body">
+                <p>Want to contribute to your community and earn money?</p>
+              <a href="{% url 'tutors:offer_create' %}" class="btn btn-primary">
+                <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i>
+                &nbsp;
+                Learn more
+              </a>
+              </div>
+          </div>
+          {% endif %}
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <!-- <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i> -->
+                  Trending subjects
+                </h3>
+              </div>
+              <div class="panel-body">
+                <img class="img-responsive" src="http://www.webdesigndev.com/wp-content/uploads/2016/04/Responsive-CSS-Bar-Graph.jpg" />
+              </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    {% block footer %}
+    <div class="container center" id="footer">
+        <div class="row">
+            <hr/>
+            <p><i class="fa fa-heart text-primary" aria-hidden="true"></i></p>
+            <p>Built by the StudCee</p>
+            <p><a href="https://www.svcover.nl/commissies.php?commissie=studcee">Info</a> | <a href="#">Disclaimer</a></p>
+        </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Offers | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<!-- <form id="searchform" action="{% url 'tutors:offer_list' %}" method="get" accept-charset="utf-8">
+	<div class="input-group">
+      <input type="text" class="form-control" name="q" placeholder="Search for subject..." value="{{q}}">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+    </div>
+</form>
+
+<br/> -->
+
+<!-- <hr/> -->
+
+{% for object in object_list %}
+
+<div id="{{object.subject.name}}" class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<i class="fa fa-book" aria-hidden="true"></i>
+			&nbsp;
+			{{object.subject.name}}
+		</span>
+	</div>
+
+  <ul class="list-group">
+		{% for t_request in object.requests %}
+			<li class="list-group-item">
+		    <div class="media">
+		      <div class="media-left">
+		        <a href="{{t_request.get_absolute_url}}">
+
+							{% if t_request.is_anonymous %}
+		          <img src="{% static 'default_profile.jpg' %}" alt="Generic male portrait" height="50" width="50" class="img-circle"/>
+		          {% else %}
+		          <img src="{{t_request.owner.foto_url}}" alt="Portrait of {{t_request.owner.full_name}}" height="50" width="50" class="img-circle"/>
+		          {% endif %}
+		        </a>
+		      </div>
+		      <div class="media-body">
+		        <h4 class="media-heading">
+
+						</h4>
+						<h4>
+							{% if t_request.is_anonymous %}
+							Anonymous
+							{% else %}
+							{{ t_request.owner.full_name }}
+							{% endif %}
+
+							<small>{{t_request.created_at|timesince}} ago</small>
+						</h4>
+		        <p>
+		          <!-- <i class="fa fa-quote-left" aria-hidden="true"></i> -->
+		          {{t_request.description|linebreaksbr}}
+		          <!-- <i class="fa fa-quote-right" aria-hidden="true"></i> -->
+		        </p>
+	          <div class="pull-right">
+							{% if t_request.owner == request.user %}
+	            <a href="{% url 'tutors:request_update' pk=t_request.pk %}" class="btn btn-warning"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit</a>
+	            &nbsp;&nbsp;
+							<!-- <a href="#" class="btn btn-success"><i class="fa fa-check fa-fw" aria-hidden="true"></i> Fulfilled</a>
+	            &nbsp;&nbsp; -->
+	            <a href="#" class="btn btn-default" role="button" disabled>
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+								Make offer
+							</a>
+	            {% else %}
+	            <a href="{% url 'CoverAccounts:contact' pk=t_request.owner.pk %}?subject=I offer tutoring" class="btn btn-success" role="button">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+								Make offer
+							</a>
+	            {% endif %}
+	          </div>
+		      </div>
+		    </div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endfor %}
+{% endblock %}
