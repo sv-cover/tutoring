@@ -32,6 +32,9 @@ class EmailAuthBackend(object):
             return None
 
 class CoversiteAuthBackend:
+
+    STAFF_MEMBERS = ['rafael@bankosegger.at']
+
     def __init__(self):
         self.api = CoverAPI(settings.COVER_API_URL, settings.COVER_API_APP, settings.COVER_API_SECRET)
 
@@ -53,6 +56,11 @@ class CoversiteAuthBackend:
                 coverMember.email = session.user['email']
                 coverMember.first_name = session.user['voornaam']
                 coverMember.last_name = session.user['achternaam']
+
+                if session.user['email'] in STAFF_MEMBERS:
+                    coverMember.is_staff = True
+                    coverMember.is_admin = True
+
                 coverMember.save()
                 #
                 # user = User(username=session.user['id'])
