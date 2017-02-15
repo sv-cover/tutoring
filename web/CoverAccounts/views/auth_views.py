@@ -1,11 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 
-from CoverAccounts.forms import AuthenticationForm, ContactForm
-from CoverAccounts.models import CoverMember
+from CoverAccounts.forms import AuthenticationForm
 
 class LoginView(FormView):
     """
@@ -39,29 +36,3 @@ def logoutView(request):
     """
     logout(request)
     return redirect('/accounts/login')
-
-class ContactView(FormView):
-
-    template_name = 'forms.html'
-    form_class = ContactForm
-
-    def get_initial(self):
-
-        sender = self.request.user
-
-        receiver_pk = self.kwargs.get('pk')
-        receiver = get_object_or_404(CoverMember, pk=receiver_pk)
-
-        return {
-            'sender_pk':sender.pk,
-            'sender':sender.full_name(),
-            'receiver_pk':receiver.pk,
-            'receiver':receiver.full_name(),
-            'subject':self.request.GET.get('subject')
-        }
-
-    # def get_success_url(self):
-    #     return '/'
-#
-#     def form_valid(self, form):
-#         return super(BecomeTutorView, self).form_valid(form)
