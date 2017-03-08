@@ -35,10 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    # 'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
     'CoverAccounts',
+    'messages',
     'tutors'
 ]
 
@@ -143,3 +144,10 @@ COVER_API_SECRET = '<secret>'
 
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'svcover.nl'
+EMAIL_PORT = '687'
+EMAIL_HOST_USER = 'studcee'
+EMAIL_HOST_PASSWORD = '<password>'
+EMAIL_USE_TLS = False

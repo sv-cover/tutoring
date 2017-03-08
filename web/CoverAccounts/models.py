@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
+import hashlib
+
 class CoverMember(AbstractBaseUser):
     ''' Model of a cover member. Substitutes Django's default user model. '''
 
@@ -18,8 +20,16 @@ class CoverMember(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
+    is_banned = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'cover_id'
+
+    #TODO
+    def pk_hash(self):
+        m =  hashlib.md5()
+        m.update(str(self.pk).encode('utf-8'))
+        m.update('salt q23u90ruefwjods'.encode('utf-8'))
+        return m.hexdigest()
 
     #TODO
     def has_module_perms(self, package_name):
@@ -48,46 +58,3 @@ class CoverMember(AbstractBaseUser):
 
         # return 'https://www.cheapdigitizing.com/wp-content/uploads/2014/11/user-placeholder.png'
         return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id
-
-
-    #
-    # @property
-    #
-    #
-    # @property
-    # def last_active(self):
-    #     '''
-    #         The time that passed since the user last performed an action on this
-    #         site
-    #     '''
-    #
-    #     return "0 days"
-    #
-    # @property
-    # def foto_url(self):
-    #     ''' Returns the  user's profile foto from cover website '''
-    #
-    #     # return 'https://www.cheapdigitizing.com/wp-content/uploads/2014/11/user-placeholder.png'
-    #     return 'https://www.svcover.nl/foto.php?lid_id=1254&amp;format=square&amp;width=80'
-    #
-    #
-    # def get_absolute_url(self):
-    #
-    #     #TODO get_absolute_url
-    #     return "/"
-    #
-    # def __str__(self):
-    #     return "%s" % (self.user)
-
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#
-#     '''  ''' #TODO
-#     if created:
-#         Profile.objects.create(user=instance)
-#
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     '''  ''' #TODO
-#     pass
-    # instance.profile.save()

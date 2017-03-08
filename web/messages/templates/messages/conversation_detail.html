@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="center">
+<h3>
+  <!-- <i class="fa fa-comments" aria-hidden="true"></i>  -->
+  {{conversation}}
+</h3>
+{% for participant in conversation.participants.all %}
+<img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="50" width="50" class="img-circle"/>
+{% endfor %}
+</div>
+<hr/>
+{% for message in conversation.messages.all %}
+
+<div class="media">
+  <div class="media-left">
+      <img src="{{message.sender.foto_url}}" alt="Portrait of {{message.sender.full_name}}" height="50" width="50" class="img-circle"/>
+    </a>
+  </div>
+  <div class="media-body">
+    <div class="pull-right text-muted">
+      {{message.sent_at|timesince}}
+    </div>
+    <h5 class="media-heading text-primary">
+      {{message.sender.full_name}}
+    </h5>
+    <p> {{message.message|linebreaksbr}} </p>
+
+  </div>
+</div>
+{% endfor %}
+
+<br/>
+
+<!-- <h3> New message</h3> -->
+<form method="post" action="{% url "messages:message_create" pk=conversation.pk %}">{% csrf_token %}
+
+{{ form |crispy}}
+<input class='btn btn-default' type='submit' value='Send' />
+</form>
+
+{% endblock %}

@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^accounts/', include('CoverAccounts.urls')),
+    url(r'^messages/', include('messages.urls')),
     url(r'^admin/', admin.site.urls, name='admin_interface'),
     url(r'^', include('tutors.urls'))
 ]

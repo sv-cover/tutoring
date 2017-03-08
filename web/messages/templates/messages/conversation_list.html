@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Conversations</h1>
+<table class="table">
+{% for conversation in conversations %}
+
+
+
+  <tr>
+
+    <td>
+      {% for participant in conversation.participants.all %}
+        <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
+      {% endfor %}
+    </td>
+
+    <td>
+      <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
+      &bull;
+      {{conversation.latest_message.sent_at | timesince}} ago
+    </td>
+
+{% endfor %}
+</table>
+
+{% endblock %}
