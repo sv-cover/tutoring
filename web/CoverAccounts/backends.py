@@ -53,7 +53,11 @@ class CoversiteAuthBackend:
                 coverMember = CoverMember(cover_id=session.user['id'])
                 coverMember.email = session.user['email']
                 coverMember.first_name = session.user['voornaam']
-                coverMember.last_name = session.user['achternaam']
+
+                if session.user['tussenvoegsel'] == "":
+                    coverMember.last_name = session.user['achternaam']
+                else:
+                    coverMember.last_name = "{tussenvoegsel} {achternaam}".format(**session.user)
 
                 STAFF_MEMBERS = ['rafael@bankosegger.at']
 
