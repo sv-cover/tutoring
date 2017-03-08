@@ -73,7 +73,7 @@ Offers | {{ block.super }}
       &nbsp;&nbsp;
       <a href="#" class="btn btn-default" role="button" disabled><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
       {% else %}
-      <a href="{% url 'CoverAccounts:contact' pk=offer.owner.pk%}?subject=I need tutoring" class="btn btn-success" role="button"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
+      <a href="{% url "messages:conversation_create" %}?to={{offer.owner.cover_id}}" class="btn btn-success" role="button"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
       {% endif %}
     </div>
   </div>

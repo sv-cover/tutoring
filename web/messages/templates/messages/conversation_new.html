@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1> Create converation with {{recipient.full_name}}</h1>
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+
+<input class='btn btn-default' type='submit' value='Start conversation'/>
+
+</form>
+{% endblock %}

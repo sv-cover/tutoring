@@ -35,10 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    # 'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
     'CoverAccounts',
+    'messages',
     'tutors'
 ]
 
@@ -143,3 +144,10 @@ COVER_API_SECRET = 'testerdetest'
 
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.world4you.com'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'testbot@bankosegger.at'
+EMAIL_HOST_PASSWORD = 'qMz-ShJ-9kJ-vDh'
+EMAIL_USE_TLS = False
