@@ -28,9 +28,6 @@ class Offer(models.Model):
     owner = models.OneToOneField(CoverMember, on_delete=models.CASCADE)
 
     # # TODO
-    is_anonymous = models.BooleanField(default=True)
-
-    # # TODO
     is_listed = models.BooleanField(default=False)
 
     # # TODO
@@ -63,10 +60,6 @@ class Request(models.Model):
 
     # TODO
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-
-    # TODO
-    is_anonymous = models.BooleanField(default=True)
-
 
     # TODO
     updated_at = models.DateTimeField(auto_now=True)

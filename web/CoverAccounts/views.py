@@ -1,8 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
+from django.views.generic.edit import UpdateView
 
-from CoverAccounts.forms import AuthenticationForm
+from CoverAccounts.models import *
+from CoverAccounts.forms import *
 
 class LoginView(FormView):
     """
@@ -36,3 +38,14 @@ def logoutView(request):
     """
     logout(request)
     return redirect('/accounts/login')
+
+class SettingsView(UpdateView):
+    template_name = 'CoverAccounts/settings.html'
+    form_class = SettingsForm
+    model = CoverMember
+
+    def get_object(self):
+        return self.request.user
+
+    def get_success_url(self):
+        return '/accounts/settings'

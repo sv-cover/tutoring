@@ -13,21 +13,21 @@
       <ul class="nav navbar-nav">
         <li><a href="{% url 'tutors:offer_list' %}">Tutors</a></li>
         <li><a href="{% url 'tutors:request_list' %}">Requests</a></li>
-        <li><a href="{% url 'messages:conversation_list' %}">Conversations</a></li>
+        <!-- <li><a href="{% url 'messages:conversation_list' %}">Conversations</a></li> -->
         <!-- <li><a href="#">Contact</a></li> -->
       </ul>
       <div class="navbar-right">
         <!-- <button type="button" class="btn btn-primary navbar-btn">Tutoring requests <span class="badge">7</span></button> -->
         <ul class="nav navbar-nav">
-          <li><a href="{% url 'CoverAccounts:logout' %}">Logout</a></li>
           {% if user_is_tutor %}
-          <li><a href="{% url 'tutors:offer_update'%}">Profile</a></li>
+          <li><a href="{% url 'CoverAccounts:settings'%}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
           {% else %}
           <li><div class="navbar-btn"><a class="btn btn-primary" href="{% url 'tutors:offer_create'%}">Become a tutor</a></div></li>
           {% endif %}
+          <li><a href="{% url 'CoverAccounts:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 
           {% if user.is_staff %}
-            <li><div class="navbar-btn"><a class="btn btn-warning btn-margin-left" href="/admin/">Admin</a></div></li>
+            <li><div class="navbar-btn"><a class="btn btn-warning btn-margin-left" href="/admin/"><i class="fa fa-sitemap" aria-hidden="true"></i> Admin</a></div></li>
           {% endif %}
           </ul>
       </div>

@@ -6,7 +6,7 @@ from CoverAccounts.models import CoverMember
 
 class ConversationManager(models.Manager):
     '''
-        The manager for Message.
+        The manager for Conversation.
     '''
 
     def conversationsOf(self, user):
@@ -24,7 +24,8 @@ class Conversation(models.Model):
     objects = ConversationManager()
 
     def latest_message(self):
-        return self.messages.latest('sent_at')
+        latest = self.messages.latest('sent_at')
+        return latest
 
     def __str__(self):
         return "%s" % self.subject

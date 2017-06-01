@@ -41,11 +41,8 @@ Offers | {{ block.super }}
 		      <div class="media-left">
 		        <a href="{{t_request.get_absolute_url}}">
 
-							{% if t_request.is_anonymous %}
-		          <img src="{% static 'default_profile.jpg' %}" alt="Generic male portrait" height="50" width="50" class="img-circle"/>
-		          {% else %}
-		          <img src="{{t_request.owner.foto_url}}" alt="Portrait of {{t_request.owner.full_name}}" height="50" width="50" class="img-circle"/>
-		          {% endif %}
+							<img src="{{t_request.owner.foto_url}}" alt="Portrait of {{t_request.owner.full_name}}" height="50" width="50" class="img-circle"/>
+							<!-- <img src="{% static 'default_profile.jpg' %}" alt="Generic male portrait" height="50" width="50" class="img-circle"/> -->
 		        </a>
 		      </div>
 		      <div class="media-body">
@@ -53,12 +50,8 @@ Offers | {{ block.super }}
 
 						</h4>
 						<h4>
-							{% if t_request.is_anonymous %}
-							Anonymous
-							{% else %}
 							{{ t_request.owner.full_name }}
-							{% endif %}
-
+							{% if t_request.owner == request.user %}<span class="text-muted">(You)</span> {% endif %}
 							<small>{{t_request.created_at|timesince}} ago</small>
 						</h4>
 		        <p>

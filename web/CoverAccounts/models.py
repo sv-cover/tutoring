@@ -14,6 +14,9 @@ class CoverMember(AbstractBaseUser):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
 
+    appears_anonymous = models.BooleanField(default=False, verbose_name="Hide personal details", help_text="Checking this means that your name and profile picture will not appear anywhere on this page. However your tutoring offers and requests can still be seen, including what you wrote in their descriptions.")
+    receives_mail_notification = models.BooleanField(default=True, verbose_name="Enable mail notification", help_text="If checked, you will be receiving email notifications whenever someone writes you a message.")
+
     first_login = models.DateTimeField(auto_now_add=True)
 
     is_active = models.BooleanField(default=True)
@@ -48,13 +51,14 @@ class CoverMember(AbstractBaseUser):
     def full_name(self):
         ''' Convenience method, returns the full name '''
 
-        if self.is_anonymous:
+        if self.appears_anonymous:
             return "Anonymous"
         else:
             return "%s %s" % (self.first_name, self.last_name)
 
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
-
-        # return 'https://www.cheapdigitizing.com/wp-content/uploads/2014/11/user-placeholder.png'
-        return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id
+        if self.appears_anonymous:
+            return 'https://www.cheapdigitizing.com/wp-content/uploads/2014/11/user-placeholder.png'
+        else:
+            return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id

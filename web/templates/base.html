@@ -61,7 +61,52 @@
         {% endblock %}
         <br/>
         </div>
+
+
         <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Your conversations</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table">
+              {% for conversation in conversations %}
+                <tr>
+
+                  <td>
+                    {% for participant in conversation.participants.all %}
+                      <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
+                    {% endfor %}
+                  </td>
+
+                  <td>
+                    <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
+                    <br/>
+                    {{conversation.latest_message.sent_at | timesince}} ago
+                  </td>
+              {% endfor %}
+                <tr>
+                  <td>...</td>
+
+                  <td>
+                  <a href={% url 'messages:conversation_list' %}> See more </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Your tutor profile</h3>
+            </div>
+            <div class="panel-body">
+          		<a href="{% url 'tutors:offer_update' %}" class="btn btn-warning">
+          			<i class="fa fa-pencil" aria-hidden="true"></i>
+                &nbsp;
+          			Edit profile
+          		</a>
+            </div>
+          </div>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Request tutoring</h3>

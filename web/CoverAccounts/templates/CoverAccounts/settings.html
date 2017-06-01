@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1><i class="fa fa-cog" aria-hidden="true"></i> Settings</h1>
+
+
+<br/>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div style="padding: 10px 20px 10px 20px; margin-bottom: 20px; border-radius:3px" class='bg-info'>
+      <p>This is your profile as it appears to others on this website. Use the forms below to make changes.</p>
+      <p>Submit changes to see update</p>
+    </div>
+    <div class="center">
+      <img src="{{request.user.foto_url}}" alt="Portrait of {{request.user.full_name}}" height="120" width="120" class="img-circle"/>
+      <h3>{{ request.user.full_name }}</h3>
+    </div>
+
+  </div>
+</div>
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+
+<input class='btn btn-success' type='submit' value='Submit changes' />
+<input class='btn btn-default' type='reset' value='Reset' />
+
+</form>
+{% endblock %}

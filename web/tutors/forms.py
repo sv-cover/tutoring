@@ -9,7 +9,6 @@ class OfferForm(forms.ModelForm):
             'offered_subjects',
             'offered_languages',
             'description',
-            'is_anonymous',
         ]
 
 class RequestForm(forms.ModelForm):
@@ -17,6 +16,5 @@ class RequestForm(forms.ModelForm):
         model = Request
         fields = [
             'subject',
-            'is_anonymous',
             'description'
         ]
