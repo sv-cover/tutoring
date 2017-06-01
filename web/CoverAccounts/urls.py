@@ -6,4 +6,5 @@ app_name = 'CoverAccounts'
 urlpatterns = [
     url(r'^login$', LoginView.as_view(), name='login'),
     url(r'^logout$', logoutView, name='logout'),
+    url(r'^settings$', SettingsView.as_view(), name='settings'),
 ]

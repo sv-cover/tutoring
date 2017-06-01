@@ -10,3 +10,14 @@ class AuthenticationForm(forms.Form):
 
     class Meta:
         fields = ['email', 'password']
+
+class SettingsForm(forms.ModelForm):
+    class Meta:
+        model = CoverMember
+        fields = [
+            # 'email',
+            'first_name',
+            'last_name',
+            'appears_anonymous',
+            'receives_mail_notification'
+        ]

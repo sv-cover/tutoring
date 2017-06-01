@@ -59,7 +59,7 @@ class MessageCreateView(CreateView):
 
 class ConversationListView(ListView):
 
-    context_object_name = 'conversations'
+    context_object_name = 'conversations2'
     model = Conversation
     template_name = 'messages/conversation_list.html'
 
