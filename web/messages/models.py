@@ -27,6 +27,9 @@ class Conversation(models.Model):
         latest = self.messages.latest('sent_at')
         return latest
 
+    def has_unread_messages_for_user(self, user):
+        return self.messages.filter(read_by__in=[user]).count() > 0
+
     def __str__(self):
         return "%s" % self.subject
 
@@ -45,11 +48,14 @@ class Message(models.Model):
     # The CoverMember sending this message.
     sender = models.ForeignKey(CoverMember, default=None, related_name='sent_messages', on_delete=models.CASCADE)
 
+    # The message string itself.
+    message = models.TextField(default='blaaaah!')
+
     # The time at which the message was sent
     sent_at = models.DateTimeField('sent at', auto_now_add=True)
 
-    # The message string itself.
-    message = models.TextField()
+    # A set of people that read the message (default: empty)
+    read_by = models.ManyToManyField(CoverMember, blank=True, related_name='read_messages')
 
     def __str__(self):
         return "%s: %s" % (self.sent_at, self.sender)
