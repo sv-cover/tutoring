@@ -82,7 +82,16 @@
                   <td>
                     <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
                     <br/>
+                    {% if conversation.latest_message %}
+                      {% if not user in conversation.latest_message.read_by %}
+                        {% if user != conversation.latest_message.sender %}
+                        <span class="badge">new</span>
+                        {% endif %}
+                      {% endif %}
                     {{conversation.latest_message.sent_at | timesince}} ago
+                    {% else %}
+                    no messages yet
+                    {% endif %}
                   </td>
               {% endfor %}
                 <tr>
