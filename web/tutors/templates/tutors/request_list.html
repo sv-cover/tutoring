@@ -24,6 +24,20 @@ Offers | {{ block.super }}
 
 {% for object in object_list %}
 
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Request tutoring</h3>
+	</div>
+	<div class="panel-body">
+		<p>Are you in need of a tutor? Just fill in this form and you'll get help!</p>
+		<a href="{% url 'tutors:request_create' %}" class="btn btn-success">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+			&nbsp;
+			Create request
+		</a>
+	</div>
+</div>
+
 <div id="{{object.subject.name}}" class="panel panel-default">
 
 	<div class="panel-heading">
