@@ -35,5 +35,5 @@ def conversationsOfUser(request):
     return {
         'conversations': list(chain(conversations_without_messages, sorted_conversations))[:5],
         'unread_message_count': unread_message_count,
-        'archived_conversations_count' : unsorted_conversations.count() - 5,
+        'archived_conversations_count' : len(list(unsorted_conversations)) - 5,
     }
