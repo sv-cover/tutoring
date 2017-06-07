@@ -10,7 +10,10 @@ class ConversationManager(models.Manager):
     '''
 
     def conversationsOf(self, user):
-        return self.all().filter(participants__in=[user])
+        if self.count() > 0:
+            return self.all().filter(participants__in=[user])
+        else:
+            return self
 
 class Conversation(models.Model):
     '''
@@ -24,8 +27,10 @@ class Conversation(models.Model):
     objects = ConversationManager()
 
     def latest_message(self):
-        latest = self.messages.latest('sent_at')
-        return latest
+        if self.messages.count() > 0:
+            return self.messages.latest('sent_at')
+        else:
+            return None
 
     def has_unread_messages_for_user(self, user):
         return self.messages.filter(read_by__in=[user]).count() > 0
