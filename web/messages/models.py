@@ -54,7 +54,7 @@ class Message(models.Model):
     sender = models.ForeignKey(CoverMember, default=None, related_name='sent_messages', on_delete=models.CASCADE)
 
     # The message string itself.
-    message = models.TextField(default='blaaaah!')
+    message = models.TextField(default='')
 
     # The time at which the message was sent
     sent_at = models.DateTimeField('sent at', auto_now_add=True)

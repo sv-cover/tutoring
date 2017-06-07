@@ -75,6 +75,15 @@ class ConversationDetailView(DetailView):
 
     # TODO: Make sure users cannot see other people's messages!!!
 
+    def get(self, request, *args, **kwargs):
+        response = super(ConversationDetailView, self).get(request, **kwargs)
+
+        latest_message = self.object.latest_message()
+        if not latest_message is None:
+            latest_message.read_by.add(self.request.user)
+
+        return response
+
     def get_context_data(self, **kwargs):
         context = super(ConversationDetailView, self).get_context_data(**kwargs)
         context['form'] = MessageForm
