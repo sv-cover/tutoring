@@ -66,7 +66,10 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Your conversations ({{unread_message_count}} new)</h3>
+              <h3 class="panel-title">Recent conversations
+                {% if unread_message_count > 0 %}
+                  <span class="label label-info">{{unread_message_count}} new</span></h3>
+                {% endif %}
             </div>
             <div class="panel-body">
               <table class="table">
@@ -75,7 +78,9 @@
 
                   <td>
                     {% for participant in conversation.participants.all %}
+                      <a href="{{conversation.get_absolute_url}}">
                       <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
+                      </a>
                     {% endfor %}
                   </td>
 
@@ -83,22 +88,26 @@
                     <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
                     <br/>
                     {% if conversation.latest_message %}
-                      {% if not user in conversation.latest_message.read_by %}
+                      {% if not user in conversation.latest_message.read_by.all %}
                         {% if user != conversation.latest_message.sender %}
-                        <span class="badge">new</span>
+                        <span class="label label-info">new</span>
                         {% endif %}
-                      {% endif %}
+                      {% endif %} {{conversation.latest_message.sender.full_name}},<br/>
                     {{conversation.latest_message.sent_at | timesince}} ago
                     {% else %}
                     no messages yet
                     {% endif %}
                   </td>
+
+                  <!-- <td>
+                    Archive
+                  </td> -->
               {% endfor %}
                 <tr>
                   <td>...</td>
 
                   <td>
-                  <a href={% url 'messages:conversation_list' %}> See more </a>
+                  <a href={% url 'messages:conversation_list' %}> See {{ archived_conversations_count }} more </a>
                   </td>
                 </tr>
               </table>
@@ -113,19 +122,6 @@
           			<i class="fa fa-pencil" aria-hidden="true"></i>
                 &nbsp;
           			Edit profile
-          		</a>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Request tutoring</h3>
-            </div>
-            <div class="panel-body">
-          		<p>Are you in need of a tutor? Just fill in this form and you'll get help!</p>
-          		<a href="{% url 'tutors:request_create' %}" class="btn btn-success">
-          			<i class="fa fa-plus" aria-hidden="true"></i>
-                &nbsp;
-          			Create request
           		</a>
             </div>
           </div>
