@@ -22,8 +22,6 @@ Offers | {{ block.super }}
 
 <!-- <hr/> -->
 
-{% for object in object_list %}
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Request tutoring</h3>
@@ -37,6 +35,8 @@ Offers | {{ block.super }}
 		</a>
 	</div>
 </div>
+
+{% for object in object_list %}
 
 <div id="{{object.subject.name}}" class="panel panel-default">
 
