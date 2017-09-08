@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.http import Http404
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import FormView
@@ -66,7 +67,6 @@ class ConversationListView(ListView):
     def get_queryset(self):
         return self.model.objects.conversationsOf(self.request.user)
 
-
 class ConversationDetailView(DetailView):
 
     context_object_name = 'conversation'
@@ -76,21 +76,33 @@ class ConversationDetailView(DetailView):
     # TODO: Make sure users cannot see other people's messages!!!
 
     def get(self, request, *args, **kwargs):
+
         response = super(ConversationDetailView, self).get(request, **kwargs)
 
-        latest_message = self.object.latest_message()
-        if not latest_message is None:
-            latest_message.read_by.add(self.request.user)
+        user_in_conversation = self.object.participants \
+            .filter(cover_id=request.user.cover_id)\
+            .count() > 0
 
-        return response
+        if user_in_conversation:
+
+            # Mark all messages in conversation as read by this user
+            for message in self.object.messages.all():
+                message.read_by.add(request.user)
+
+            return response
+
+        else:
+
+            # If a user tries to access another person's conversation, we act
+            # as if the website doesn't exist.
+            raise Http404('No conversation found matching the query')
+
 
     def get_context_data(self, **kwargs):
         context = super(ConversationDetailView, self).get_context_data(**kwargs)
         context['form'] = MessageForm
         return context
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(MessageListView, self).get_context_data(**kwargs)
 #
 # class ContactView(FormView):
 #
