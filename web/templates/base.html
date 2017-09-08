@@ -113,18 +113,7 @@
               </table>
             </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Your tutor profile</h3>
-            </div>
-            <div class="panel-body">
-          		<a href="{% url 'tutors:offer_update' %}" class="btn btn-warning">
-          			<i class="fa fa-pencil" aria-hidden="true"></i>
-                &nbsp;
-          			Edit profile
-          		</a>
-            </div>
-          </div>
+
           {% if not user_is_tutor %}
           <div class="panel panel-default">
               <div class="panel-heading">
@@ -141,6 +130,19 @@
                 Learn more
               </a>
               </div>
+          </div>
+          {% else %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Your tutor profile</h3>
+            </div>
+            <div class="panel-body">
+          		<a href="{% url 'tutors:offer_update' %}" class="btn btn-warning">
+          			<i class="fa fa-pencil" aria-hidden="true"></i>
+                &nbsp;
+          			Edit profile
+          		</a>
+            </div>
           </div>
           {% endif %}
           <div class="panel panel-default">
