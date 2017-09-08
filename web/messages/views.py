@@ -73,8 +73,6 @@ class ConversationDetailView(DetailView):
     model = Conversation
     template_name = 'messages/conversation_detail.html'
 
-    # TODO: Make sure users cannot see other people's messages!!!
-
     def get(self, request, *args, **kwargs):
 
         response = super(ConversationDetailView, self).get(request, **kwargs)
