@@ -1,0 +1,24 @@
+- model: tutors.Language
+  pk: 1
+  fields:
+    name: English
+
+- model: tutors.Language
+  pk: 2
+  fields:
+    name: Dutch
+
+- model: tutors.Language
+  pk: 3
+  fields:
+    name: German
+
+- model: tutors.Language
+  pk: 4
+  fields:
+    name: Spanish
+
+- model: tutors.Language
+  pk: 5
+  fields:
+    name: Italian

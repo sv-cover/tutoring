@@ -10,7 +10,7 @@ services:
       - db
     volumes:
       - ./web:/usr/src/app
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input &&  gunicorn tutoring.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && pip install pyyaml && python manage.py collectstatic --no-input && python manage.py loaddata languages.yaml && python manage.py loaddata subjects.yaml &&  gunicorn tutoring.wsgi -b 0.0.0.0:8000"
 
   nginx:
     container_name: studcee-tut-nginx

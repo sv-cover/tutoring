@@ -1,0 +1,19 @@
+- model: tutors.Subject
+  pk: 1
+  fields:
+    name: Imperative Programming
+
+- model: tutors.Subject
+  pk: 2
+  fields:
+    name: Intro to Artificial Intelligence
+
+- model: tutors.Subject
+  pk: 3
+  fields:
+    name: Autonomous Systems
+
+- model: tutors.Subject
+  pk: 4
+  fields:
+    name: Neurophysics
