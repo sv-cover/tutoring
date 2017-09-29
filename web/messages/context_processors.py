@@ -3,21 +3,18 @@ from itertools import chain
 from .models import *
 
 def conversationsOfUser(request):
-    unsorted_conversations = []
-    unread_message_count = 0
+    if not request.user.is_authenticated():
+        return {}
+    else:
+        unread_message_count = 0
+        conversations = list(Conversation.objects.conversationsOf(request.user))
 
-    if request.user.is_authenticated():
-        conversations = Conversation.objects.conversationsOf(request.user)
-
-        for conv in list(conversations):
-            # unread_message_count += 1
-
+        for conv in conversations:
 
             if conv.latest_message() is None:
                 continue
 
             if conv.latest_message().sender == request.user:
-                # unread_message_count += -1
                 continue
 
             if conv.latest_message().read_by.count() > 0:
@@ -28,8 +25,8 @@ def conversationsOfUser(request):
                 unread_message_count += 1
 
 
-    return {
-        'recent_conversations': conversations[:5],
-        'unread_message_count': unread_message_count,
-        'conversation_count': len(list(conversations)),
-    }
+        return {
+            'recent_conversations': conversations[:5],
+            'unread_message_count': unread_message_count,
+            'conversation_count': len(conversations),
+        }
