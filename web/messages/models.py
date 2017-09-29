@@ -15,7 +15,7 @@ class ConversationManager(models.Manager):
         if self.count() > 0:
             return sorted(self.all().filter(participants__in=[user]), key=lambda c: c.latest_message().sent_at if c.latest_message() else timezone.now(), reverse=True)
         else:
-            return self
+            return []
     #
     # def sorted_by_recency(self):
     #     return sorted(self.all(), key=lambda c: c.latest_message.sent_at)
