@@ -1,24 +1,59 @@
 - model: tutors.Language
   pk: 1
   fields:
-    name: English
+    name: "English"
 
 - model: tutors.Language
   pk: 2
   fields:
-    name: Dutch
+    name: "Dutch"
 
 - model: tutors.Language
   pk: 3
   fields:
-    name: German
+    name: "German"
 
 - model: tutors.Language
   pk: 4
   fields:
-    name: Spanish
+    name: "Spanish"
 
 - model: tutors.Language
   pk: 5
   fields:
-    name: Italian
+    name: "Italian"
+
+- model: tutors.Language
+  pk: 6
+  fields:
+    name: "French"
+
+- model: tutors.Language
+  pk: 6
+  fields:
+    name: "Portuguese"
+
+- model: tutors.Language
+  pk: 7
+  fields:
+    name: "Romanian"
+
+- model: tutors.Language
+  pk: 8
+  fields:
+    name: "Chinese"
+
+- model: tutors.Language
+  pk: 8
+  fields:
+    name: "Japanese"
+
+- model: tutors.Language
+  pk: 8
+  fields:
+    name: "Korean"
+
+- model: tutors.Language
+  pk: 8
+  fields:
+    name: "Other (please specify)"
