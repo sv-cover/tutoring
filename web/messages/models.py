@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
+from django.utils import timezone
+
 
 from CoverAccounts.models import CoverMember
 
@@ -11,9 +13,12 @@ class ConversationManager(models.Manager):
 
     def conversationsOf(self, user):
         if self.count() > 0:
-            return self.all().filter(participants__in=[user])
+            return sorted(self.all().filter(participants__in=[user]), key=lambda c: c.latest_message().sent_at if c.latest_message() else timezone.now(), reverse=True)
         else:
-            return self
+            return []
+    #
+    # def sorted_by_recency(self):
+    #     return sorted(self.all(), key=lambda c: c.latest_message.sent_at)
 
 class Conversation(models.Model):
     '''
