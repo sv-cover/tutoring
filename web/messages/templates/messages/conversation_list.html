@@ -5,6 +5,12 @@
 {% block content %}
 
 <h1>Conversations</h1>
+<tr>
+  {% if conversations2|length == 0 %}
+  <p><i class="fa fa-meh-o" aria-hidden="true"></i> Hmm seems like you don't have any conversations yet.</p>
+  {% endif %}
+</tr>
+
 <table class="table">
 {% for conversation in conversations2 %}
   <tr>
@@ -16,7 +22,7 @@
     </td>
 
     <td>
-      <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
+      <a href="{{conversation.get_absolute_url}}"> {{conversation.subject |truncatechars_html:30}} </a>
       &bull;
       {{conversation.latest_message.sent_at | timesince}} ago
     </td>

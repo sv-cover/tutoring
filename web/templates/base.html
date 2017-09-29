@@ -73,9 +73,13 @@
             </div>
             <div class="panel-body">
               <table class="table">
-              {% for conversation in conversations %}
                 <tr>
-
+                  {% if recent_conversations|length == 0 %}
+                  <i class="fa fa-meh-o" aria-hidden="true"></i> Hmm seems like you don't have any conversations yet.
+                  {% endif %}
+                </tr>
+              {% for conversation in recent_conversations %}
+                <tr>
                   <td>
                     {% for participant in conversation.participants.all %}
                       <a href="{{conversation.get_absolute_url}}">
@@ -85,7 +89,7 @@
                   </td>
 
                   <td>
-                    <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
+                    <a href="{{conversation.get_absolute_url}}"> {{conversation.subject |truncatechars_html:10}} </a>
                     <br/>
                     {% if conversation.latest_message %}
                       {% if not user in conversation.latest_message.read_by.all %}
@@ -99,17 +103,17 @@
                     {% endif %}
                   </td>
 
-                  <!-- <td>
-                    Archive
-                  </td> -->
+                </tr>
               {% endfor %}
+              {% if conversation_count > 5 %}
                 <tr>
-                  <td>...</td>
+                  <td></td>
 
                   <td>
-                  <a href={% url 'messages:conversation_list' %}> See {{ archived_conversations_count }} more </a>
+                  <a href={% url 'messages:conversation_list' %}> View all conversations </a>
                   </td>
                 </tr>
+              {% endif %}
               </table>
             </div>
           </div>
