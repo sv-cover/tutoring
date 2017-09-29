@@ -7,9 +7,9 @@ def conversationsOfUser(request):
     unread_message_count = 0
 
     if request.user.is_authenticated():
-        unsorted_conversations = Conversation.objects.conversationsOf(request.user).all()
+        conversations = Conversation.objects.conversationsOf(request.user)
 
-        for conv in list(unsorted_conversations):
+        for conv in list(conversations):
             # unread_message_count += 1
 
 
@@ -27,13 +27,9 @@ def conversationsOfUser(request):
             else:
                 unread_message_count += 1
 
-    conversations_without_messages = filter(lambda conv: conv.latest_message() is None, unsorted_conversations)
-    conversations_with_messages = filter(lambda conv: not conv.latest_message() is None, unsorted_conversations)
-
-    sorted_conversations = sorted(conversations_with_messages, key=lambda conv: conv.latest_message().sent_at, reverse=True)
 
     return {
-        'conversations': list(chain(conversations_without_messages, sorted_conversations))[:5],
+        'recent_conversations': conversations[:5],
         'unread_message_count': unread_message_count,
-        'archived_conversations_count' : len(list(unsorted_conversations)) - 5,
+        'conversation_count': len(list(conversations)),
     }

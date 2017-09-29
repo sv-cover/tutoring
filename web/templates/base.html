@@ -73,9 +73,8 @@
             </div>
             <div class="panel-body">
               <table class="table">
-              {% for conversation in conversations %}
+              {% for conversation in recent_conversations %}
                 <tr>
-
                   <td>
                     {% for participant in conversation.participants.all %}
                       <a href="{{conversation.get_absolute_url}}">
@@ -99,17 +98,17 @@
                     {% endif %}
                   </td>
 
-                  <!-- <td>
-                    Archive
-                  </td> -->
+                </tr>
               {% endfor %}
+              {% if conversation_count > 5 %}
                 <tr>
-                  <td>...</td>
+                  <td></td>
 
                   <td>
-                  <a href={% url 'messages:conversation_list' %}> See {{ archived_conversations_count }} more </a>
+                  <a href={% url 'messages:conversation_list' %}> View all conversations </a>
                   </td>
                 </tr>
+              {% endif %}
               </table>
             </div>
           </div>
