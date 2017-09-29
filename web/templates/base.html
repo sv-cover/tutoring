@@ -73,6 +73,11 @@
             </div>
             <div class="panel-body">
               <table class="table">
+                <tr>
+                  {% if recent_conversations|length == 0 %}
+                  <i class="fa fa-meh-o" aria-hidden="true"></i> Hmm seems like you don't have any conversations yet.
+                  {% endif %}
+                </tr>
               {% for conversation in recent_conversations %}
                 <tr>
                   <td>
