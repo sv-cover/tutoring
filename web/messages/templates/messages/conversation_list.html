@@ -16,7 +16,7 @@
     </td>
 
     <td>
-      <a href="{{conversation.get_absolute_url}}"> {{conversation.subject}} </a>
+      <a href="{{conversation.get_absolute_url}}"> {{conversation.subject |truncatechars_html:30}} </a>
       &bull;
       {{conversation.latest_message.sent_at | timesince}} ago
     </td>
