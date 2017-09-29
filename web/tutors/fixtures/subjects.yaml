@@ -1,19 +1,485 @@
+# You can remove subjects from this list, but ONLY EVER ADD SUBJECTS TO THE END.
+#
+# The first list will be added somewhere next week by Dinand.
+# Then we can only alter it by adding stuff to the end of the list.
+#
+
 - model: tutors.Subject
   pk: 1
   fields:
-    name: Imperative Programming
+    name: "Imperative Programming"
 
 - model: tutors.Subject
   pk: 2
   fields:
-    name: Intro to Artificial Intelligence
+    name: "Introduction to Computing Science"
 
 - model: tutors.Subject
   pk: 3
   fields:
-    name: Autonomous Systems
+    name: "Introduction to Logic (CS)"
 
 - model: tutors.Subject
   pk: 4
   fields:
-    name: Neurophysics
+    name: "Calculus for Computing Science"
+
+- model: tutors.Subject
+  pk: 5
+  fields:
+    name: "Computer Architecture"
+
+- model: tutors.Subject
+  pk: 6
+  fields:
+    name: "Discrete Structures"
+
+- model: tutors.Subject
+  pk: 7
+  fields:
+    name: "Algorithms and Data Structures in C"
+
+- model: tutors.Subject
+  pk: 8
+  fields:
+    name: "Introduction to Scientific Computing"
+
+- model: tutors.Subject
+  pk: 9
+  fields:
+    name: "Program Correctness"
+
+- model: tutors.Subject
+  pk: 10
+  fields:
+    name: "Artificial Intelligence 1"
+
+- model: tutors.Subject
+  pk: 11
+  fields:
+    name: "Linear Algebra and Multivariable Calculus"
+
+- model: tutors.Subject
+  pk: 12
+  fields:
+    name: "Object-Oriented Programming"
+
+- model: tutors.Subject
+  pk: 13
+  fields:
+    name: "Advanced Object Oriented Programming"
+
+- model: tutors.Subject
+  pk: 14
+  fields:
+    name: "Functional Programming"
+
+- model: tutors.Subject
+  pk: 15
+  fields:
+    name: "Statistics"
+
+- model: tutors.Subject
+  pk: 16
+  fields:
+    name: "Introduction to Information Systems"
+
+- model: tutors.Subject
+  pk: 17
+  fields:
+    name: "Problem Analysis and Software Design"
+
+- model: tutors.Subject
+  pk: 18
+  fields:
+    name: "Signals and Systems"
+
+- model: tutors.Subject
+  pk: 19
+  fields:
+    name: "Software Engineering"
+
+- model: tutors.Subject
+  pk: 20
+  fields:
+    name: "Advanced Algorithms and Data Structures"
+
+- model: tutors.Subject
+  pk: 21
+  fields:
+    name: "Computing Science: Ethical and Professional Issues"
+
+- model: tutors.Subject
+  pk: 22
+  fields:
+    name: "Languages and Machines"
+
+- model: tutors.Subject
+  pk: 23
+  fields:
+    name: "Parallel Computing"
+
+- model: tutors.Subject
+  pk: 24
+  fields:
+    name: "Computer Graphics"
+
+- model: tutors.Subject
+  pk: 25
+  fields:
+    name: "Net-Computing"
+
+- model: tutors.Subject
+  pk: 26
+  fields:
+    name: "Operating systems"
+
+- model: tutors.Subject
+  pk: 27
+  fields:
+    name: "Information Security"
+
+- model: tutors.Subject
+  pk: 28
+  fields:
+    name: "Introduction to Intelligent Systems"
+
+- model: tutors.Subject
+  pk: 29
+  fields:
+    name: "Requirements Engineering and Software Startups"
+
+- model: tutors.Subject
+  pk: 30
+  fields:
+    name: "Compiler Construction"
+
+- model: tutors.Subject
+  pk: 31
+  fields:
+    name: "Software Quality Assurance and Testing"
+
+- model: tutors.Subject
+  pk: 32
+  fields:
+    name: "Autonomous Systems"
+
+- model: tutors.Subject
+  pk: 33
+  fields:
+    name: "Imperative Programming for AI"
+
+- model: tutors.Subject
+  pk: 34
+  fields:
+    name: "Introduction to Artificial Intelligence"
+
+- model: tutors.Subject
+  pk: 35
+  fields:
+    name: "Basic Scientific Skills"
+
+- model: tutors.Subject
+  pk: 36
+  fields:
+    name: "Calculus for Artificial Intelligence"
+
+- model: tutors.Subject
+  pk: 37
+  fields:
+    name: "Introduction to Logic (AI and MA)"
+
+- model: tutors.Subject
+  pk: 38
+  fields:
+    name: "Algorithms and Data Structures in C"
+
+- model: tutors.Subject
+  pk: 39
+  fields:
+    name: "Cognitive Psychology"
+
+- model: tutors.Subject
+  pk: 40
+  fields:
+    name: "Human factors"
+
+- model: tutors.Subject
+  pk: 41
+  fields:
+    name: "Artificial Intelligence 1"
+
+- model: tutors.Subject
+  pk: 42
+  fields:
+    name: "General Linguistics"
+
+- model: tutors.Subject
+  pk: 43
+  fields:
+    name: "Linear Algebra and Multivariable Calculus"
+
+- model: tutors.Subject
+  pk: 44
+  fields:
+    name: "Knowledge and Agent Technology"
+
+- model: tutors.Subject
+  pk: 45
+  fields:
+    name: "Language and Speech Technology"
+
+- model: tutors.Subject
+  pk: 46
+  fields:
+    name: "Statistics"
+
+- model: tutors.Subject
+  pk: 47
+  fields:
+    name: "Architectures of Intelligence"
+
+- model: tutors.Subject
+  pk: 48
+  fields:
+    name: "Data Analytics and Communication"
+
+- model: tutors.Subject
+  pk: 49
+  fields:
+    name: "Signals and Systems"
+
+- model: tutors.Subject
+  pk: 50
+  fields:
+    name: "Advanced Logic"
+
+- model: tutors.Subject
+  pk: 51
+  fields:
+    name: "Philosophy of Cognitive Science"
+
+- model: tutors.Subject
+  pk: 52
+  fields:
+    name: "Autonomous Systems Practical"
+
+- model: tutors.Subject
+  pk: 53
+  fields:
+    name: "Cognitive Science Practical"
+
+- model: tutors.Subject
+  pk: 54
+  fields:
+    name: "Cognition and Attention"
+
+- model: tutors.Subject
+  pk: 55
+  fields:
+    name: "Computationele Grammatica"
+
+- model: tutors.Subject
+  pk: 56
+  fields:
+    name: "Computer Graphics"
+
+- model: tutors.Subject
+  pk: 57
+  fields:
+    name: "Neural Networks AI"
+
+- model: tutors.Subject
+  pk: 58
+  fields:
+    name: "Object-Oriented Programming"
+
+- model: tutors.Subject
+  pk: 59
+  fields:
+    name: "Autonomous Systems Practical Extension"
+
+- model: tutors.Subject
+  pk: 60
+  fields:
+    name: "Language Technology Practical"
+
+- model: tutors.Subject
+  pk: 61
+  fields:
+    name: "Cognitive neuroscience"
+
+- model: tutors.Subject
+  pk: 62
+  fields:
+    name: "Parallel Computing"
+
+- model: tutors.Subject
+  pk: 63
+  fields:
+    name: "Zelforganisatie van ecologische en sociale systemen"
+
+- model: tutors.Subject
+  pk: 64
+  fields:
+    name: "Artificial Intelligence 2"
+
+- model: tutors.Subject
+  pk: 65
+  fields:
+    name: "Neurophysics (Physics for Artificial Intelligence)"
+
+- model: tutors.Subject
+  pk: 66
+  fields:
+    name: "Functional Programming"
+
+- model: tutors.Subject
+  pk: 67
+  fields:
+    name: "Information Security"
+
+- model: tutors.Subject
+  pk: 68
+  fields:
+    name: "Introduction to Intelligent Systems"
+
+- model: tutors.Subject
+  pk: 69
+  fields:
+    name: "Programming in C/C++ (part I)"
+
+- model: tutors.Subject
+  pk: 70
+  fields:
+    name: "Requirements Engineering and Software Startups"
+
+- model: tutors.Subject
+  pk: 71
+  fields:
+    name: "Knowledge Technology Practical"
+
+- model: tutors.Subject
+  pk: 72
+  fields:
+    name: "Human error"
+
+- model: tutors.Subject
+  pk: 73
+  fields:
+    name: "Informaticarecht voor niet-juristen"
+
+- model: tutors.Subject
+  pk: 74
+  fields:
+    name: "Introduction to Information Systems"
+
+- model: tutors.Subject
+  pk: 75
+  fields:
+    name: "Learning: Theory and practice"
+
+- model: tutors.Subject
+  pk: 76
+  fields:
+    name: "Logisch Programmeren"
+
+- model: tutors.Subject
+  pk: 77
+  fields:
+    name: "Phil. of Mind: Lichaam, Brein, Geest"
+
+- model: tutors.Subject
+  pk: 78
+  fields:
+    name: "Philosophy of Science"
+
+- model: tutors.Subject
+  pk: 79
+  fields:
+    name: "Problem Analysis and Software Design"
+
+- model: tutors.Subject
+  pk: 80
+  fields:
+    name: "Programming in C/C++ (part II)"
+
+- model: tutors.Subject
+  pk: 81
+  fields:
+    name: "Bachelor's Project"
+
+- model: tutors.Subject
+  pk: 82
+  fields:
+    name: "Autonomous Systems Practical"
+
+- model: tutors.Subject
+  pk: 83
+  fields:
+    name: "Cognitive Science Practical"
+
+- model: tutors.Subject
+  pk: 84
+  fields:
+    name: "Cognition and Attention"
+
+- model: tutors.Subject
+  pk: 85
+  fields:
+    name: "Computationele Grammatica"
+
+- model: tutors.Subject
+  pk: 86
+  fields:
+    name: "Computer Graphics"
+
+- model: tutors.Subject
+  pk: 87
+  fields:
+    name: "Philosophy of the Natural Sciences"
+
+- model: tutors.Subject
+  pk: 88
+  fields:
+    name: "Programming in C/C++ (part III)"
+
+- model: tutors.Subject
+  pk: 89
+  fields:
+    name: "Biopsychology"
+
+- model: tutors.Subject
+  pk: 90
+  fields:
+    name: "Autonomous Systems Practical Extension"
+
+- model: tutors.Subject
+  pk: 91
+  fields:
+    name: "Language Technology Practical"
+
+- model: tutors.Subject
+  pk: 92
+  fields:
+    name: "Cognitive neuroscience"
+
+- model: tutors.Subject
+  pk: 93
+  fields:
+    name: "Filosofie van WTS"
+
+- model: tutors.Subject
+  pk: 94
+  fields:
+    name: "Parallel Computing"
+
+- model: tutors.Subject
+  pk: 95
+  fields:
+    name: "Zelforganisatie van ecologische en sociale systemen"
+
+- model: tutors.Subject
+  pk: 96
+  fields:
+    name: "Other (please specify)"
