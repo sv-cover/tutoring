@@ -22,9 +22,10 @@
         <!-- <button type="button" class="btn btn-primary navbar-btn">Tutoring requests <span class="badge">7</span></button> -->
         <ul class="nav navbar-nav">
           {% if user_is_tutor %}
-          <li><a href="{% url 'CoverAccounts:settings'%}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="{% url 'tutors:offer_update' %}"><i class="fa fa-user" aria-hidden="true"></i></i> Profile</a></li>
           {% else %}
           <li><div class="navbar-btn"><a class="btn btn-primary" href="{% url 'tutors:offer_create'%}">Become a tutor</a></div></li>
+          <li><a href="{% url 'CoverAccounts:settings'%}"><i class="fa fa-user" aria-hidden="true"></i></i> Profile</a></li>
           {% endif %}
           <li><a href="{% url 'CoverAccounts:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 
