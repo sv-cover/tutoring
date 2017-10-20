@@ -48,6 +48,7 @@ class CoverMember(AbstractBaseUser):
     def __str__(self):
         return self.email
 
+    @property
     def full_name(self):
         ''' Convenience method, returns the full name '''
 
