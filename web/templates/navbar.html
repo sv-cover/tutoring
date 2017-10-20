@@ -17,11 +17,9 @@
       <ul class="navbar-right">
         <li><a href="{% url 'tutors:offer_list' %}">Tutors</a></li>
         <li><a href="{% url 'tutors:request_list' %}">Requests</a></li>
+        <li><a href="{% url 'messages:conversation_list' %}">Inbox</a></li>
         {% if not user_is_tutor %}
           <li><a href="{% url 'tutors:offer_create'%}">Become a Tutor</a></li>
-        {% endif %}
-        {% if user.is_staff %}
-          <li><a href="/admin/">Admin</a></li>
         {% endif %}
         <!-- <li><a href="{% url 'messages:conversation_list' %}">Conversations</a></li> -->
         <!-- <li><a href="#">Contact</a></li> -->
@@ -32,11 +30,14 @@
             <i class="fa fa-angle-down"></i>
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header"> Logged in as TODO</li>
+            <li class="dropdown-header"> Logged in as {{request.user}}</li>
             {% if user_is_tutor %}
               <li><a href="{% url 'tutors:offer_update' %}">Profile</a></li>
             {% else %}
               <li><a href="{% url 'CoverAccounts:settings'%}">Profile</a></li>
+            {% endif %}
+            {% if user.is_staff %}
+              <li><a href="/admin/">Admin</a></li>
             {% endif %}
             <li><a href="{% url 'CoverAccounts:logout' %}">Logout</a></li>
           </ul>
