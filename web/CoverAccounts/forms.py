@@ -16,9 +16,12 @@ class SettingsForm(forms.ModelForm):
     class Meta:
         model = CoverMember
         fields = [
+
+            # Don't let the user change those. This should be done on svcover.nl
             # 'email',
-            'first_name',
-            'last_name',
+            # 'first_name',
+            # 'last_name',
+
             'appears_anonymous',
             'receives_mail_notification'
         ]
