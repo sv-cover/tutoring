@@ -90,7 +90,8 @@
                   </td>
 
                   <td>
-                    <a href="{{conversation.get_absolute_url}}"> {{conversation.subject |truncatechars_html:10}} </a>
+                    <a href="{{conversation.get_absolute_url}}">
+                      {{conversation.subject |truncatechars_html:27}} </a>
                     <br/>
                     {% if conversation.latest_message %}
                       {% if not user in conversation.latest_message.read_by.all %}
