@@ -11,16 +11,16 @@
       <a href="https://www.svcover.nl" class="navbar-logo">
         <img src="//cdl.svcover.nl/dist/v0.1/img/cover.png" alt="Cover">
       </a>
-      <a class="navbar-brand" href="/">StudCee Tutoring</a>
+      <a class="navbar-brand" href="/">Tutoring</a>
     </div>
     <div id="navbar-main-collapse" class="navbar-collapse collapse">
       <ul class="navbar-right">
-        <li><a href="{% url 'tutors:offer_list' %}">Tutors</a></li>
-        <li><a href="{% url 'tutors:request_list' %}">Requests</a></li>
-        <li><a href="{% url 'messages:conversation_list' %}">Inbox</a></li>
         {% if not user_is_tutor %}
           <li><a href="{% url 'tutors:offer_create'%}">Become a Tutor</a></li>
         {% endif %}
+        <li><a href="{% url 'tutors:offer_list' %}">Tutors</a></li>
+        <li><a href="{% url 'tutors:request_list' %}">Requests</a></li>
+        <li><a href="{% url 'messages:conversation_list' %}">Inbox</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                               role="button" aria-haspopup="true"
@@ -30,14 +30,16 @@
           <ul class="dropdown-menu">
             <li class="dropdown-header"> Logged in as {{request.user}}</li>
             {% if user_is_tutor %}
-              <li><a href="{% url 'tutors:offer_update' %}">Profile</a></li>
+              <li><a href="{% url 'tutors:offer_update' %}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
             {% else %}
-              <li><a href="{% url 'CoverAccounts:settings'%}">Profile</a></li>
+              <li><a href="{% url 'CoverAccounts:settings'%}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
             {% endif %}
+            <li><a href="{% url 'CoverAccounts:logout' %}"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
+            <!-- <li><hr/></li> -->
+            <li><a href="#"><i class="fa fa-fw fa-gavel" aria-hidden="true"></i> Disclaimer / Legal</a></li>
             {% if user.is_staff %}
-              <li><a href="/admin/">Admin</a></li>
+              <li><a href="/admin/"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Admin</a></li>
             {% endif %}
-            <li><a href="{% url 'CoverAccounts:logout' %}">Logout</a></li>
           </ul>
       </ul>
     </div><!--/.nav-collapse -->
