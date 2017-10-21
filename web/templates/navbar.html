@@ -28,7 +28,7 @@
             <i class="fa fa-angle-down"></i>
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header"> Logged in as {{request.user}}</li>
+            <li class="dropdown-header"> Logged in as {{request.user.full_name}}</li>
             {% if user_is_tutor %}
               <li><a href="{% url 'tutors:offer_update' %}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
             {% else %}
