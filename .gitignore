@@ -19,3 +19,5 @@ __pycache__
 ehthumbs.db
 Thumbs.db
 .env
+Virtualenv
+development_db

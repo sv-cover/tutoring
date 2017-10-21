@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdl.svcover.nl/dist/v0.1/css/cdl.css" type="text/css">
 
     <style>
       .center {
@@ -40,7 +41,7 @@
     {% include "navbar.html" %}
     {% endblock %}
 
-    <div class="container">
+    <div class="container" style="padding-top: 17px;">
       <!--<div class="jumbotron">
         <h1 class="display-3">Want to become a tutor?</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -89,7 +90,8 @@
                   </td>
 
                   <td>
-                    <a href="{{conversation.get_absolute_url}}"> {{conversation.subject |truncatechars_html:10}} </a>
+                    <a href="{{conversation.get_absolute_url}}">
+                      {{conversation.subject |truncatechars_html:27}} </a>
                     <br/>
                     {% if conversation.latest_message %}
                       {% if not user in conversation.latest_message.read_by.all %}
@@ -149,17 +151,16 @@
             </div>
           </div>
           {% endif %}
-          <div class="panel panel-default">
+          <!-- <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <!-- <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i> -->
                   Trending subjects
                 </h3>
               </div>
               <div class="panel-body">
                 <img class="img-responsive" src="http://www.webdesigndev.com/wp-content/uploads/2016/04/Responsive-CSS-Bar-Graph.jpg" />
               </div>
-          </div>
+          </div> -->
         </div>
       </div>
       {% endblock %}
