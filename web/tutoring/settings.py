@@ -142,7 +142,7 @@ COVER_API_APP = 'coverapi'
 COVER_API_SECRET = 'testerdetest'
 
 #Crispy FORM TAGs SETTINGS
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.world4you.com'
