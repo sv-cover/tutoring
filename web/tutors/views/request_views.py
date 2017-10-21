@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
