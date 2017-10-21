@@ -69,8 +69,6 @@ class RequestDeleteView(DeleteView):
         tutoring_request_pk = self.kwargs.get('pk')
         tutoring_request = get_object_or_404(Request, pk=tutoring_request_pk)
 
-        print(tutoring_request_pk, self.request.user)
-
         # Prohibit user from editing requests from other people
         if(tutoring_request.owner != self.request.user):
             raise Http404

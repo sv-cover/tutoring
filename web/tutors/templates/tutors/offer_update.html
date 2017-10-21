@@ -1,19 +1,53 @@
-{% extends "forms.html" %}
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
 
 {% block content %}
-  {{block.super}}
 
-  <hr/>
-<!--
-  <p>
-  Make your tutoring offer invisible for everyone except yourself.
-  </p>
-  <a href="#" class="btn btn-warning">Hide</a>
+<form method='POST' action=''>{% csrf_token %}
+  <h4 class="text-primary">Your svcover.nl profile.</h4>
+  <!-- <br/> -->
+  <table class='table'>
+    <tr>
+      <td>Cover ID</td>
+      <td>{{request.user.cover_id}}</td>
+    </tr>
+    <tr>
+      <td>Cover email</td>
+      <td>{{request.user.email}}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{{request.user.full_name}}</td>
+    </tr>
+  </table>
+  <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{request.user.cover_id}}'>Change on svcover.nl</a></p>
+  <br/>
 
-  <hr/> -->
+  <h4 class="text-primary">Update your profile settings</h4>
+  {{ settings_form|crispy }}
+  <br/>
 
-  <p>
-  Delete your tutoring offer forever.
-  </p>
-  <a href="{% url 'tutors:offer_delete' %}" class="btn btn-danger">Delete</a>
+  <h4 class="text-primary">Update your tutoring offer</h4>
+  <div class="alert alert-info">
+    <strong>Info:</strong> Select multiple items by keeping the Command / Option key pressed.
+  </div>
+  {{ offer_form|crispy }}
+  <br/>
+
+  <input class='btn btn-success' type='submit' value='Submit' />
+  <hr/><br/>
+
+
+
+
+  <h4>Permanently remove your tutoring offer</h4>
+  <p><a href="{% url 'tutors:offer_delete' %}" class="btn btn-danger">Delete</a></p>
+
+
+</form>
+
+
+
+
 {% endblock %}

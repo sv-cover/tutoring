@@ -1,7 +1,11 @@
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.list import ListView
+from django.views.generic.edit import FormView
 from django.views.generic import CreateView, UpdateView, DeleteView
+
+from CoverAccounts.forms import SettingsForm
 
 from tutors.models import Offer
 from tutors.forms import OfferForm
@@ -42,13 +46,37 @@ class OfferCreateView(CreateView):
         form.instance.owner = self.request.user
         return super(OfferCreateView, self).form_valid(form)
 
-class OfferUpdateView(UpdateView):
-    model = Offer
-    form_class = OfferForm
-    template_name = 'tutors/offer_update.html'
+class OfferUpdateView(FormView):
 
-    def get_object(self):
-            return Offer.objects.get(owner = self.request.user)
+    # This class thinks it's just an offer form view, and creates an offer view which is not used
+    # TODO: There probabaly is a better way.
+    form_class = OfferForm
+
+    template_name = 'tutors/offer_update.html'
+    success_url = '/'
+
+    def get(self, request, *args, **kwargs):
+        offer_form = OfferForm(instance = Offer.objects.get(owner=request.user))
+        offer_form.prefix = 'offer_form'
+
+        settings_form = SettingsForm(instance = request.user)
+        settings_form.prefix = 'settings_form'
+
+        return self.render_to_response(self.get_context_data(offer_form=offer_form, settings_form=settings_form))
+
+    def post(self, request, *args, **kwargs):
+        offer_form = OfferForm(request.POST, prefix='offer_form', instance=Offer.objects.get(owner=request.user))
+        settings_form = SettingsForm(request.POST, prefix='settings_form', instance=request.user)
+
+        if offer_form.is_valid() and settings_form.is_valid():
+            offer = offer_form.save()
+            cover_member = settings_form.save()
+
+            return HttpResponseRedirect(self.success_url)
+        else:
+            offer_form.prefix = 'offer_form'
+            settings_form.prefix = 'settings_form'
+            return self.render_to_response(self.get_context_data(offer_form=offer_form, settings_form=settings_form))
 
 class OfferDeleteView(DeleteView):
     model = Offer
