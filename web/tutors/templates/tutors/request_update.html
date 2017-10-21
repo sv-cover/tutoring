@@ -4,16 +4,6 @@
   {{block.super}}
 
   <hr/>
-<!--
-  <p>
-  Make your tutoring offer invisible for everyone except yourself.
-  </p>
-  <a href="#" class="btn btn-warning">Hide</a>
 
-  <hr/> -->
-
-  <p>
-  Delete your request
-  </p>
-  <a href="{% url 'tutors:request_delete' pk=object.pk %}" class="btn btn-danger">Delete</a>
+  <a href="{% url 'tutors:request_delete' pk=object.pk %}" class="btn btn-danger">Delete this request</a>
 {% endblock %}
