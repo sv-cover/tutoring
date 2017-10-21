@@ -127,7 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/usr/src/app/static'
+STATIC_ROOT = '/home/commissies/studcee/studcee-tutoring/static'
 
 AUTH_USER_MODEL = 'CoverAccounts.CoverMember'
 AUTHENTICATION_BACKENDS = ['CoverAccounts.backends.CoversiteAuthBackend', ]
