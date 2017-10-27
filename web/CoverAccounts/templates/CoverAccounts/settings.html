@@ -3,31 +3,30 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<h4>Update your profile settings</h4>
-
-
-<br/>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div style="padding: 10px 20px 10px 20px; margin-bottom: 20px; border-radius:3px" class='bg-info'>
-      <p>This is your profile as it appears to others on this website. Use the forms below to make changes.</p>
-      <p>Submit changes to see update</p>
-    </div>
-    <div class="center">
-      <img src="{{request.user.foto_url}}" alt="Portrait of {{request.user.full_name}}" height="120" width="120" class="img-circle"/>
-      <h3>{{ request.user.full_name }}</h3>
-    </div>
-
-  </div>
-</div>
-
 <form method='POST' action=''>{% csrf_token %}
-{{ form|crispy }}
+  <h4 class="text-primary">Your svcover.nl profile.</h4>
+  <!-- <br/> -->
+  <table class='table'>
+    <tr>
+      <td>Cover ID</td>
+      <td>{{request.user.cover_id}}</td>
+    </tr>
+    <tr>
+      <td>Cover email</td>
+      <td>{{request.user.email}}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{{request.user.full_name}}</td>
+    </tr>
+  </table>
+  <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{request.user.cover_id}}'>Change on svcover.nl</a></p>
+  <br/>
 
-<input class='btn btn-success' type='submit' value='Submit changes' />
-<!-- <input class='btn btn-default' type='reset' value='Reset' /> -->
+  <h4 class="text-primary">Update your profile settings</h4>
+  {{ form|crispy }}
+  <br/>
 
+  <input class='btn btn-primary' type='submit' value='Submit changes' />
 </form>
 {% endblock %}
