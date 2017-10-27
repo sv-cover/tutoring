@@ -23,5 +23,5 @@ class SettingsForm(forms.ModelForm):
             # 'last_name',
 
             'appears_anonymous',
-            'receives_mail_notification'
+            # 'receives_mail_notification'
         ]
