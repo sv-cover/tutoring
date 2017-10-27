@@ -2,14 +2,11 @@
 
 {% load crispy_forms_tags %}
 
-{% block navbar %}
-{% endblock %}
-
 {% block container %}
 
 <h1> Login </h1>
 <br/>
-<p> Use your email and password from <a href='https://svcover.nl'>svcover.nl</a> to login here.
+<p> You must be a Cover member for using this service. <br/> Please enter your email and password from your <a href='https://svcover.nl'>svcover.nl</a> account to sign in.
 <hr/>
 
 <form method='POST' action=''>{% csrf_token %}
