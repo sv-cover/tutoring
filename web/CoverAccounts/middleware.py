@@ -30,9 +30,13 @@ class RestrictNonMemberMiddleware(object):
 
     def __call__(self, request):
 
-        login_path = reverse('CoverAccounts:login')
+        allowed_paths = [
+            reverse('CoverAccounts:login'),
+            reverse('terms_conditions'),
+        ]
 
-        if request.user.is_anonymous() and request.path != login_path:
-            return HttpResponseRedirect(login_path)
+
+        if request.user.is_anonymous() and not request.path in allowed_paths:
+            return HttpResponseRedirect(reverse('CoverAccounts:login'))
 
         return self.get_response(request)

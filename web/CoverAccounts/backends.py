@@ -49,6 +49,16 @@ class CoversiteAuthBackend:
 
             try:
                 coverMember = CoverMember.objects.get(cover_id=session.user['id'])
+                coverMember.email = session.user['email']
+                coverMember.first_name = session.user['voornaam']
+
+                if session.user['tussenvoegsel'] == "":
+                    coverMember.last_name = session.user['achternaam']
+                else:
+                    coverMember.last_name = "{tussenvoegsel} {achternaam}".format(**session.user)
+
+                coverMember.save()
+
             except CoverMember.DoesNotExist:
                 coverMember = CoverMember(cover_id=session.user['id'])
                 coverMember.email = session.user['email']
