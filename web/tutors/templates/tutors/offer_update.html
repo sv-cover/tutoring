@@ -4,6 +4,17 @@
 
 {% block content %}
 
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Profile page</h4>
+  <div>
+    This is your profile page. Here you can see your personal information. You
+    also have the option to appear anonymous to fellow users. This is also the
+    place to make changes to your tutor profile, so you can add
+    courses/languages and update your description. Changes to your personal
+    information need to be done via your Cover profile.
+  </div>
+</div>
+
 <form method='POST' action=''>{% csrf_token %}
   <h4 class="text-primary">Your svcover.nl profile.</h4>
   <!-- <br/> -->

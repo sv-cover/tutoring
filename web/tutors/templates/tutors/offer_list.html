@@ -9,6 +9,16 @@ Offers | {{ block.super }}
 
 {% block content %}
 
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Tutors page</h4>
+  <div>
+    Here you can see all the tutors that are registered on the system. You can
+    use the search box to look for tutors for a specific course. You only need
+    to type in a part of the name of the course in order to find it. You can
+    contact a tutor by pressing the contact button.
+  </div>
+</div>
+
 <form id="searchform" action="{% url 'tutors:offer_list' %}" method="get" accept-charset="utf-8">
 	<div class="input-group">
       <input id="input-search-subject" type="text" class="form-control" name="q" placeholder="Search for subject..." value="{{q}}">
