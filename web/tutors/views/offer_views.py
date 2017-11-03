@@ -40,7 +40,7 @@ class OfferListView(ListView):
 class OfferCreateView(CreateView):
     model = Offer
     form_class = OfferForm
-    template_name = 'forms.html'
+    template_name = 'tutors/offer_create.html'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
