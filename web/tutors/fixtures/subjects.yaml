@@ -17,12 +17,12 @@
 - model: tutors.Subject
   pk: 3
   fields:
-    name: "Introduction to Logic (CS)"
+    name: "Introduction to Logic"
 
 - model: tutors.Subject
   pk: 4
   fields:
-    name: "Calculus for Computing Science"
+    name: "Calculus"
 
 - model: tutors.Subject
   pk: 5
@@ -33,11 +33,6 @@
   pk: 6
   fields:
     name: "Discrete Structures"
-
-- model: tutors.Subject
-  pk: 7
-  fields:
-    name: "Algorithms and Data Structures in C"
 
 - model: tutors.Subject
   pk: 8
@@ -60,39 +55,9 @@
     name: "Linear Algebra and Multivariable Calculus"
 
 - model: tutors.Subject
-  pk: 12
-  fields:
-    name: "Object-Oriented Programming"
-
-- model: tutors.Subject
   pk: 13
   fields:
     name: "Advanced Object Oriented Programming"
-
-- model: tutors.Subject
-  pk: 14
-  fields:
-    name: "Functional Programming"
-
-- model: tutors.Subject
-  pk: 15
-  fields:
-    name: "Statistics"
-
-- model: tutors.Subject
-  pk: 16
-  fields:
-    name: "Introduction to Information Systems"
-
-- model: tutors.Subject
-  pk: 17
-  fields:
-    name: "Problem Analysis and Software Design"
-
-- model: tutors.Subject
-  pk: 18
-  fields:
-    name: "Signals and Systems"
 
 - model: tutors.Subject
   pk: 19
@@ -115,16 +80,6 @@
     name: "Languages and Machines"
 
 - model: tutors.Subject
-  pk: 23
-  fields:
-    name: "Parallel Computing"
-
-- model: tutors.Subject
-  pk: 24
-  fields:
-    name: "Computer Graphics"
-
-- model: tutors.Subject
   pk: 25
   fields:
     name: "Net-Computing"
@@ -132,22 +87,12 @@
 - model: tutors.Subject
   pk: 26
   fields:
-    name: "Operating systems"
+    name: "Operating Systems"
 
 - model: tutors.Subject
   pk: 27
   fields:
     name: "Information Security"
-
-- model: tutors.Subject
-  pk: 28
-  fields:
-    name: "Introduction to Intelligent Systems"
-
-- model: tutors.Subject
-  pk: 29
-  fields:
-    name: "Requirements Engineering and Software Startups"
 
 - model: tutors.Subject
   pk: 30
@@ -160,16 +105,6 @@
     name: "Software Quality Assurance and Testing"
 
 - model: tutors.Subject
-  pk: 32
-  fields:
-    name: "Autonomous Systems"
-
-- model: tutors.Subject
-  pk: 33
-  fields:
-    name: "Imperative Programming for AI"
-
-- model: tutors.Subject
   pk: 34
   fields:
     name: "Introduction to Artificial Intelligence"
@@ -178,16 +113,6 @@
   pk: 35
   fields:
     name: "Basic Scientific Skills"
-
-- model: tutors.Subject
-  pk: 36
-  fields:
-    name: "Calculus for Artificial Intelligence"
-
-- model: tutors.Subject
-  pk: 37
-  fields:
-    name: "Introduction to Logic (AI and MA)"
 
 - model: tutors.Subject
   pk: 38
@@ -202,22 +127,12 @@
 - model: tutors.Subject
   pk: 40
   fields:
-    name: "Human factors"
-
-- model: tutors.Subject
-  pk: 41
-  fields:
-    name: "Artificial Intelligence 1"
+    name: "Human Factors"
 
 - model: tutors.Subject
   pk: 42
   fields:
     name: "General Linguistics"
-
-- model: tutors.Subject
-  pk: 43
-  fields:
-    name: "Linear Algebra and Multivariable Calculus"
 
 - model: tutors.Subject
   pk: 44
@@ -265,29 +180,14 @@
     name: "Autonomous Systems Practical"
 
 - model: tutors.Subject
-  pk: 53
-  fields:
-    name: "Cognitive Science Practical"
-
-- model: tutors.Subject
-  pk: 54
-  fields:
-    name: "Cognition and Attention"
-
-- model: tutors.Subject
   pk: 55
   fields:
-    name: "Computationele Grammatica"
-
-- model: tutors.Subject
-  pk: 56
-  fields:
-    name: "Computer Graphics"
+    name: "Computational Grammar"
 
 - model: tutors.Subject
   pk: 57
   fields:
-    name: "Neural Networks AI"
+    name: "Neural Networks"
 
 - model: tutors.Subject
   pk: 58
@@ -295,29 +195,9 @@
     name: "Object-Oriented Programming"
 
 - model: tutors.Subject
-  pk: 59
-  fields:
-    name: "Autonomous Systems Practical Extension"
-
-- model: tutors.Subject
-  pk: 60
-  fields:
-    name: "Language Technology Practical"
-
-- model: tutors.Subject
-  pk: 61
-  fields:
-    name: "Cognitive neuroscience"
-
-- model: tutors.Subject
-  pk: 62
-  fields:
-    name: "Parallel Computing"
-
-- model: tutors.Subject
   pk: 63
   fields:
-    name: "Zelforganisatie van ecologische en sociale systemen"
+    name: "Self-organization of Ecological and Social Systems"
 
 - model: tutors.Subject
   pk: 64
@@ -327,17 +207,12 @@
 - model: tutors.Subject
   pk: 65
   fields:
-    name: "Neurophysics (Physics for Artificial Intelligence)"
+    name: "Neurophysics"
 
 - model: tutors.Subject
   pk: 66
   fields:
     name: "Functional Programming"
-
-- model: tutors.Subject
-  pk: 67
-  fields:
-    name: "Information Security"
 
 - model: tutors.Subject
   pk: 68
@@ -347,7 +222,7 @@
 - model: tutors.Subject
   pk: 69
   fields:
-    name: "Programming in C/C++ (part I)"
+    name: "Programming in C/C++"
 
 - model: tutors.Subject
   pk: 70
@@ -362,12 +237,12 @@
 - model: tutors.Subject
   pk: 72
   fields:
-    name: "Human error"
+    name: "Human Error"
 
 - model: tutors.Subject
   pk: 73
   fields:
-    name: "Informaticarecht voor niet-juristen"
+    name: "IT Law for Non-law Students"
 
 - model: tutors.Subject
   pk: 74
@@ -377,17 +252,17 @@
 - model: tutors.Subject
   pk: 75
   fields:
-    name: "Learning: Theory and practice"
+    name: "Learning: Theory and Practice"
 
 - model: tutors.Subject
   pk: 76
   fields:
-    name: "Logisch Programmeren"
+    name: "Logic Programming"
 
 - model: tutors.Subject
   pk: 77
   fields:
-    name: "Phil. of Mind: Lichaam, Brein, Geest"
+    name: "Philosophy of Mind: Body, Brain, Mind"
 
 - model: tutors.Subject
   pk: 78
@@ -400,19 +275,9 @@
     name: "Problem Analysis and Software Design"
 
 - model: tutors.Subject
-  pk: 80
-  fields:
-    name: "Programming in C/C++ (part II)"
-
-- model: tutors.Subject
   pk: 81
   fields:
     name: "Bachelor's Project"
-
-- model: tutors.Subject
-  pk: 82
-  fields:
-    name: "Autonomous Systems Practical"
 
 - model: tutors.Subject
   pk: 83
@@ -425,11 +290,6 @@
     name: "Cognition and Attention"
 
 - model: tutors.Subject
-  pk: 85
-  fields:
-    name: "Computationele Grammatica"
-
-- model: tutors.Subject
   pk: 86
   fields:
     name: "Computer Graphics"
@@ -440,19 +300,9 @@
     name: "Philosophy of the Natural Sciences"
 
 - model: tutors.Subject
-  pk: 88
-  fields:
-    name: "Programming in C/C++ (part III)"
-
-- model: tutors.Subject
   pk: 89
   fields:
     name: "Biopsychology"
-
-- model: tutors.Subject
-  pk: 90
-  fields:
-    name: "Autonomous Systems Practical Extension"
 
 - model: tutors.Subject
   pk: 91
@@ -462,24 +312,14 @@
 - model: tutors.Subject
   pk: 92
   fields:
-    name: "Cognitive neuroscience"
+    name: "Cognitive Neuroscience"
 
 - model: tutors.Subject
   pk: 93
   fields:
-    name: "Filosofie van WTS"
+    name: "Philosophy of Science, Technology and Society"
 
 - model: tutors.Subject
   pk: 94
   fields:
     name: "Parallel Computing"
-
-- model: tutors.Subject
-  pk: 95
-  fields:
-    name: "Zelforganisatie van ecologische en sociale systemen"
-
-- model: tutors.Subject
-  pk: 96
-  fields:
-    name: "Other (please specify)"
