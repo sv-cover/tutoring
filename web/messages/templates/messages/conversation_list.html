@@ -4,6 +4,14 @@
 
 {% block content %}
 
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Message list</h4>
+  <div>
+    This is your inbox. Here you can see all the messages that you have
+    received. The newest messages will appear at the top of the screen.
+  </div>
+</div>
+
 <h1>Conversations</h1>
 <tr>
   {% if conversations2|length == 0 %}
