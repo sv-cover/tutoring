@@ -31,7 +31,7 @@ class RequestListView(ListView):
 class RequestCreateView(CreateView):
     model = Request
     form_class = RequestForm
-    template_name = 'forms.html'
+    template_name = 'tutors/request_create.html'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
