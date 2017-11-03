@@ -4,6 +4,16 @@
 
 {% block content %}
 
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Offer creation page</h4>
+  <div>
+    Here you can build your tutor profile. You can select multiple options in
+    each box by holding down ctrl (Linux, Windows) or cmd (macOS) and clicking
+    the relevant options. For the description, you can add a bit of information
+    about who you are, what kind of things you are interested in, and matters
+    with regards to your tutoring, such as when you are available.
+  </div>
+</div>
 
 <form method='POST' action=''>{% csrf_token %}
 {{ form|crispy }}
