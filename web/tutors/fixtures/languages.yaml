@@ -29,31 +29,31 @@
     name: "French"
 
 - model: tutors.Language
-  pk: 6
+  pk: 7
   fields:
     name: "Portuguese"
 
 - model: tutors.Language
-  pk: 7
+  pk: 8
   fields:
     name: "Romanian"
 
 - model: tutors.Language
-  pk: 8
+  pk: 9
   fields:
     name: "Chinese"
 
 - model: tutors.Language
-  pk: 8
+  pk: 10
   fields:
     name: "Japanese"
 
 - model: tutors.Language
-  pk: 8
+  pk: 11
   fields:
     name: "Korean"
 
 - model: tutors.Language
-  pk: 8
+  pk: 12
   fields:
     name: "Other (please specify)"

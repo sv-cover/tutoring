@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 
 import hashlib
@@ -60,6 +61,6 @@ class CoverMember(AbstractBaseUser):
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
         if self.appears_anonymous:
-            return 'https://www.cheapdigitizing.com/wp-content/uploads/2014/11/user-placeholder.png'
+            return static('default_profile_400.png')
         else:
             return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id

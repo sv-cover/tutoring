@@ -9,6 +9,16 @@ Offers | {{ block.super }}
 
 {% block content %}
 
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Requests page</h4>
+  <div>
+  Here you can see all the people that have requested help for a specific
+  course. All the courses are ordered alphabetically by name, so you can easily
+  look for a course that you are willing to help people with. If you want to
+  help someone out, you can click the “make offer” button.
+  </div>
+</div>
+
 <!-- <form id="searchform" action="{% url 'tutors:offer_list' %}" method="get" accept-charset="utf-8">
 	<div class="input-group">
       <input type="text" class="form-control" name="q" placeholder="Search for subject..." value="{{q}}">

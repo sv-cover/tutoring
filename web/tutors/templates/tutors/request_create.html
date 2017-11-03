@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">Request creation page</h4>
+  <div>
+    Here you can create or update a tutoring request. You can select one subject
+    for your request, and then add some information on what you need help with
+    in the description. Please try to be as specific as possible. You can also
+    include information on when you are available and other tutoring related
+    issues. Please keep in mind that everybody can see this.
+  </div>
+</div>
+
+<form method='POST' action=''>{% csrf_token %}
+{{ form|crispy }}
+
+<input class='btn btn-default' type='submit' value='{% if btn_title %}{{ btn_title }}{% else %}Submit{% endif %}' />
+
+</form>
+{% endblock %}

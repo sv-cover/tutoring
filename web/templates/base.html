@@ -65,6 +65,7 @@
 
 
         <div class="col-md-4">
+          {% if recent_conversations|length > 0 %}
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Recent conversations
@@ -74,11 +75,6 @@
             </div>
             <div class="panel-body">
               <table class="table">
-                <tr>
-                  {% if recent_conversations|length == 0 %}
-                  <i class="fa fa-meh-o" aria-hidden="true"></i> Hmm seems like you don't have any conversations yet.
-                  {% endif %}
-                </tr>
               {% for conversation in recent_conversations %}
                 <tr>
                   <td>
@@ -119,6 +115,20 @@
               </table>
             </div>
           </div>
+          {% endif %}
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Need help?</h3>
+            </div>
+
+            <div class="panel-body">
+              <p> Need help with the system? You can contact us via the following channels: </p>
+              <p><i class="fa fa-fw fa-facebook-square" aria-hidden="true"></i> <a href='https://www.facebook.com/profile.php?id=100015861330098'>StudCee Facebook</a></p>
+              <p><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> <a href='mailto:tutoring@svcover.nl'>tutoring@svcover.nl</a></p>
+              </ul>
+            </div>
+          </div>
 
           {% if not user_is_tutor %}
           <div class="panel panel-default">
@@ -131,9 +141,9 @@
               <div class="panel-body">
                 <p>Want to contribute to your community?</p>
               <a href="{% url 'tutors:offer_create' %}" class="btn btn-primary">
-                <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i>
+                <!-- <i class="fa fa-info-circle fa-fw " aria-hidden="true"></i> -->
                 &nbsp;
-                Learn more
+                Become a tutor
               </a>
               </div>
           </div>
