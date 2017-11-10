@@ -7,7 +7,7 @@ class Language(models.Model):
 
     name = models.CharField(max_length=30)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 class Subject(models.Model):
@@ -18,7 +18,7 @@ class Subject(models.Model):
 
     name = models.CharField(max_length=120)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -46,8 +46,8 @@ class Offer(models.Model):
         #TODO get_absolute_url
         return "/"
 
-    def __str__(self):
-        return self.owner.__str__()
+    def __unicode__(self):
+        return self.owner.__unicode__()
 
 class Request(models.Model):
     '''
@@ -77,5 +77,5 @@ class Request(models.Model):
         #TODO get_absolute_url
         return "/"
 
-    def __str__(self):
+    def __unicode__(self):
         return "%s: %s" % (self.owner, self.subject)
