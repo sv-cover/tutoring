@@ -32,7 +32,11 @@
     <td>
       <a href="{{conversation.get_absolute_url}}"> {{conversation.subject }} </a>
       &bull;
-      {{conversation.latest_message.sent_at | timesince}} ago
+      {% if conversation.latest_message %}
+        {{conversation.latest_message.sent_at | timesince}} ago
+      {% else %}
+        No messages yet!
+      {% endif %}
     </td>
   </tr>
 
