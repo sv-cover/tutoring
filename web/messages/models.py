@@ -40,7 +40,7 @@ class Conversation(models.Model):
     def has_unread_messages_for_user(self, user):
         return self.messages.filter(read_by__in=[user]).count() > 0
 
-    def __str__(self):
+    def _unicode_(self):
         return "%s" % self.subject
 
     def get_absolute_url(self):
@@ -67,5 +67,5 @@ class Message(models.Model):
     # A set of people that read the message (default: empty)
     read_by = models.ManyToManyField(CoverMember, blank=True, related_name='read_messages')
 
-    def __str__(self):
+    def __unicode__(self):
         return "%s: %s" % (self.sent_at, self.sender)
