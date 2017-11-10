@@ -29,7 +29,7 @@ class OfferListView(ListView):
         q = self.request.GET.get('q')
 
         if q:
-            return Offer.objects.filter(offered_subjects__name__icontains=q)
+            return Offer.objects.filter(offered_subjects__name__icontains=q).distinct()
 
         else:
             own_offers = list(Offer.objects.filter(owner=self.request.user))

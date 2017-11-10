@@ -33,7 +33,7 @@
       }
     </style>
 
-    <title>{% block head_title %}Studcee Tutoring{% endblock %}</title>
+    <title>{% block head_title %}Home{% endblock %} | StudCee Tutoring</title>
   </head>
 
   <body>
@@ -97,7 +97,7 @@
                       {% endif %} {{conversation.latest_message.sender.full_name}},<br/>
                     {{conversation.latest_message.sent_at | timesince}} ago
                     {% else %}
-                    no messages yet
+                    No messages yet!
                     {% endif %}
                   </td>
 
