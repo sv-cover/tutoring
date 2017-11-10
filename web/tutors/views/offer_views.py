@@ -29,7 +29,9 @@ class OfferListView(ListView):
         q = self.request.GET.get('q')
 
         if q:
-            return Offer.objects.filter(offered_subjects__name__icontains=q).distinct()
+            q = q.lower()
+            fun = lambda x: any(q in s.name.lower() for s in x.offered_subjects.all())
+            return filter(fun, list(Offer.objects.all()))
 
         else:
             own_offers = list(Offer.objects.filter(owner=self.request.user))
