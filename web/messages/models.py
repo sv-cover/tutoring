@@ -40,7 +40,7 @@ class Conversation(models.Model):
     def has_unread_messages_for_user(self, user):
         return self.messages.filter(read_by__in=[user]).count() > 0
 
-    def _unicode_(self):
+    def __unicode__(self):
         return "%s" % self.subject
 
     def get_absolute_url(self):
