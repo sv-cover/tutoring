@@ -25,7 +25,7 @@ SECRET_KEY = 'kugmb)-yq&a&&ccln3wj)7d2#u9oo7@f(oe+d*ndawlksg61!n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tutoring.svcover.nl']
 
 
 # Application definition
