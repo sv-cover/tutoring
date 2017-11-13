@@ -20,9 +20,6 @@ class LoginView(FormView):
     def form_valid(self, form):
         user = authenticate(email=self.request.POST['email'], password=self.request.POST['password'])
 
-        if self.request.POST['special'] != 'Toh00toring':
-            # TODO
-            return redirect(self.get_success_url())
         # print("::: %s" % user)
         if user is not None:
             if user.is_active:
