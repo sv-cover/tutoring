@@ -4,19 +4,16 @@ a {
 }
 </style>
 
-<div style="padding: 16pt 32pt; font-family: sans-serif;">
+<div style="font-family: sans-serif;">
   <h1 style="color:#C8102E;">Hi {{user.first_name}}!</h1>
   <p>Here is what happened on CACTuS.</p>
   <p>To summarize, you have {{n_conversations}} ongoing conversations with unread messages. Here they are:</p>
-  <div style="background:#DADADA; margin: 16pt 0pt; padding: 16pt;">
-  {% for conv in conversations %}
-
-  <h3>{{conv.subject}}</a></h3>
-  <!-- <ul style="list-style-type: none; padding: 0pt 0pt 12pt 16pt"> -->
+  <div style="background:#DADADA; margin: 20px 0px; padding: 0px 20px 20px 20px;">{% for conv in conversations %}
+  <h3 style="padding-top: 20px;">{{conv.subject}}</a></h3>
   <table>
-    {% for msg in conv.messages.all %}
+    {% for msg in conv.last_5_messages %}
     <tr>
-      <td>{{msg.sender.full_name}}:&nbsp;&nbsp;&nbsp;</td>
+      <td>{{msg.sender.first_name}}:&nbsp;&nbsp;&nbsp;</td>
       <td>{{msg.message}}</td>
     </tr>
     {% endfor %}
@@ -33,7 +30,7 @@ a {
   <h3>Can we do better?</h3>
   <p>Contact us via <a href="mailto:tutoring@svcover.nl">tutoring@svcover.nl</a> to give feedback or if you need help.</p>
 
-<p style="margin-top:16pt">Sincerely, </br> The StudCee </p>
+<p style="margin-top:20px">Sincerely, </br> The StudCee </p>
 
-  <p style="color:#666666; margin-top:16pt"><i>You can unsubscribe from these emails on the CACTuS <a href="https://tutoring.svcover.nl/accounts/settings">settings</a> page.</i></p>
+  <p style="color:#666666; margin-top:20px"><i>You can unsubscribe from these emails on the CACTuS <a href="https://tutoring.svcover.nl/accounts/settings">settings</a> page.</i></p>
 </div>
