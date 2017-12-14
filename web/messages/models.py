@@ -37,6 +37,9 @@ class Conversation(models.Model):
         else:
             return None
 
+    def last_5_messages(self):
+        return list(self.messages.all())[-5:]
+
     def has_unread_messages_for_user(self, user):
         return self.messages.filter(read_by__in=[user]).count() > 0
 
