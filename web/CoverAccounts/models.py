@@ -16,13 +16,15 @@ class CoverMember(AbstractBaseUser):
     last_name = models.CharField(max_length = 255)
 
     appears_anonymous = models.BooleanField(default=False, verbose_name="Hide personal details", help_text="Checking this means that your name and profile picture will not appear anywhere on this page. However your tutoring offers and requests can still be seen, including what you wrote in their descriptions.")
-    receives_mail_notification = models.BooleanField(default=True, verbose_name="Enable mail notification", help_text="If checked, you will be receiving email notifications whenever someone writes you a message.")
+    receives_mail_notification = models.BooleanField(default=True, verbose_name="Enable mail digests", help_text="If checked, you will be receiving weekly email updates on what you missed.")
 
     first_login = models.DateTimeField(auto_now_add=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+
+    is_alpha_user = models.BooleanField(default=False)
 
     is_banned = models.BooleanField(default=False)
 
