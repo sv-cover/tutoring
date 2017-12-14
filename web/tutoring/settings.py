@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'CoverAccounts',
     'messages',
-    'tutors'
+    'tutors',
+    'maildigest'
 ]
 
 MIDDLEWARE = [
