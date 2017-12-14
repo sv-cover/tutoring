@@ -16,8 +16,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         messages_to_send = []
 
-        email_subject = 'CACTuS - Weekly Digest'
-        email_from = 'tutoring@svcover.nl'
+        email_subject = 'CACTuS - Here is what happened'
+        email_from = 'testbot@bankosegger.at'
 
         mail_template_plain = get_template('maildigest/digest.txt')
         mail_template_html = get_template('maildigest/digest.html')
