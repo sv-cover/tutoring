@@ -24,6 +24,8 @@ class CoverMember(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
+    is_alpha_user = models.BooleanField(default=False)
+
     is_banned = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'cover_id'
