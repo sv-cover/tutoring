@@ -3,3 +3,5 @@ django-crispy-forms==1.6.1
 pytz==2017.2
 PyYAML==3.12
 git+https://bitbucket.org/cover-webcie/coverapi.git#egg=CoverAPI
+pylint>=1.7,<1.8
+pylint_django
