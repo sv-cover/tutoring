@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail, send_mass_mail
 from django.core.mail import get_connection, EmailMultiAlternatives
@@ -14,6 +16,9 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
+
+        self.stdout.write('{} - Start executing Email Digest command.\nSend emails to the following users:'.format(datetime.now()))
+
         messages_to_send = []
 
         email_subject = 'CACTuS - Here is what happened'
@@ -41,11 +46,12 @@ class Command(BaseCommand):
             message = EmailMultiAlternatives(email_subject, mail_content_plain, email_from, [user.email])
             message.attach_alternative(mail_content_html, 'text/html')
 
+            print(' - {}'.format(user))
             messages_to_send.append(message)
 
-        self.stdout.write('Email Digest command executing...')
+        self.stdout.write('Talking to mail server...')
 
         with get_connection() as connection:
             connection.send_messages(messages_to_send)
 
-        self.stdout.write('Mail sent to {} people!'.format(len(messages_to_send)))
+        self.stdout.write('Done! Mails successfully sent to {n} people!\n{t} - Done.\n---'.format(n=len(messages_to_send), t=datetime.now()))
