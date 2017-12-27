@@ -27,7 +27,7 @@ class Command(BaseCommand):
         mail_template_plain = get_template('maildigest/digest.txt')
         mail_template_html = get_template('maildigest/digest.html')
 
-        for user in CoverMember.objects.filter(is_alpha_user=True, receives_mail_notification=True):
+        for user in CoverMember.objects.filter(receives_mail_notification=True):
 
             conversations = list(Conversation.objects.conversationsOf(user))
             conversations = [c for c in conversations if not user in c.latest_message().read_by.all()]
