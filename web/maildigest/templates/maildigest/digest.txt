@@ -1,6 +1,6 @@
 Hi {{user.first_name}}!
 
-Here is what happened on CACTuS.
+Here is what happened on CACTuS, Cover's tutor finder.
 To summarize, you have {{n_conversations}} ongoing conversations with unread messages.
 
 Here they are:
