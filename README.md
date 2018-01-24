@@ -55,6 +55,12 @@ python manage.py sendmaildigest
 
 But watch out! If you do this on production you'll spam everyone who has new messages.
 
+# Testing
+
+If you want to write unit tests make sure you make it easy for yourself and first read this tutorial:
+
+https://docs.djangoproject.com/en/2.0/topics/testing/overview/
+
 # Organisation
 
 The website is built using [Django 1.11.6](https://www.djangoproject.com).
