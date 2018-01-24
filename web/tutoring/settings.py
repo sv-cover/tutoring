@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kugmb)-yq&a&&ccln3wj)7d2#u9oo7@f(oe+d*ndawlksg61!n'
+SECRET_KEY = '<secret>'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -140,14 +140,14 @@ COVER_API_URL = 'https://www.svcover.nl/api.php'
 
 COVER_API_APP = 'coverapi'
 
-COVER_API_SECRET = 'testerdetest'
+COVER_API_SECRET = '<secret>'
 
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.world4you.com'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'testbot@bankosegger.at'
-EMAIL_HOST_PASSWORD = 'qMz-ShJ-9kJ-vDh'
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'svcover.nl'
+EMAIL_PORT = '687'
+EMAIL_HOST_USER = 'studcee'
+EMAIL_HOST_PASSWORD = '<password>'
+EMAIL_USE_TLS = True
