@@ -150,4 +150,4 @@ EMAIL_HOST = 'svcover.nl'
 EMAIL_PORT = '687'
 EMAIL_HOST_USER = 'studcee'
 EMAIL_HOST_PASSWORD = '<password>'
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
