@@ -33,6 +33,7 @@ class RestrictNonMemberMiddleware(object):
         allowed_paths = [
             reverse('CoverAccounts:login'),
             reverse('terms_conditions'),
+            reverse('telegram_bot:webhook'),
         ]
 
 
