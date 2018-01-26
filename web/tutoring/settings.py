@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'CoverAccounts',
     'messages',
     'tutors',
-    'maildigest'
+    'maildigest',
+    'telegram_bot'
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,7 @@ EMAIL_PORT = '687'
 EMAIL_HOST_USER = 'studcee'
 EMAIL_HOST_PASSWORD = '<password>'
 EMAIL_USE_TLS = True
+
+
+TELEGRAM_BOT_API_TOKEN = '526055532:AAHh_qTUk2OHxcou3F4-qm0Ra9JXWzyz624'
+TELEGRAM_HASH_SALT = 'K,`h[c\'R*:kGsUEV:uqUX8>(,?H$dHe6!x@Lek='
