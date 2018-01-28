@@ -24,5 +24,6 @@ class SettingsForm(forms.ModelForm):
             # 'last_name',
 
             'appears_anonymous',
-            'receives_mail_notification'
+            'receives_weekly_mails',
+            'receives_daily_mails'
         ]
