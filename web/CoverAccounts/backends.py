@@ -69,11 +69,13 @@ class CoversiteAuthBackend:
                 else:
                     coverMember.last_name = "{tussenvoegsel} {achternaam}".format(**session.user)
 
-                STAFF_MEMBERS = ['rafael@bankosegger.at']
+                STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
 
                 if session.user['email'] in STAFF_MEMBERS:
                     coverMember.is_staff = True
                     coverMember.is_admin = True
+
+                coverMember.update_telegram_bot_token()
 
                 coverMember.save()
                 #
