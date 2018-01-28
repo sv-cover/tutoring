@@ -31,7 +31,7 @@ class CoverMember(AbstractBaseUser):
 
     is_banned = models.BooleanField(default=False)
 
-    telegram_bot_token = models.CharField(unique=True, default=None, max_length=160, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
+    telegram_bot_token = models.CharField(default=None, max_length=160, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
     telegram_chat_id = models.IntegerField(null=True)
 
     telegram_id_counter = models.IntegerField(default=0)
