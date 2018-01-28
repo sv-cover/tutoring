@@ -152,7 +152,7 @@ class ConversationDetailView(DetailView):
 #         send_mail(
 #             'Subject here',
 #             'Here is the message.',
-#             'studcee',
+#             'testbot@bankosegger.at',
 #             ['rafael@bankosegger.at'],
 #             fail_silently=False,
 #         )
