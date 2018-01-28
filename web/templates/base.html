@@ -117,6 +117,19 @@
           </div>
           {% endif %}
 
+          {% if request.user.is_alpha_user %}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><span class="badge badge-warning">ALPHA</span> Get notified about new messages</h3>
+            </div>
+
+            <div class="panel-body">
+              <p>We have developed a Telegram bot for your convenience. It will keep you up to date about new messages.</p>
+              <p><a class="btn btn-primary" href="https://telegram.me/cover_tutoring_bot?start={{request.user.telegram_bot_token}}"> <i class="fa fa-telegram" aria-hidden="true"></i> Connect to Telegram </a></p>
+            </div>
+          </div>
+          {% endif %}
+
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Need help?</h3>
@@ -126,7 +139,6 @@
               <p> Need help with the system? You can contact us via the following channels: </p>
               <p><i class="fa fa-fw fa-facebook-square" aria-hidden="true"></i> <a href='https://www.facebook.com/profile.php?id=100015861330098'>StudCee Facebook</a></p>
               <p><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> <a href='mailto:tutoring@svcover.nl'>tutoring@svcover.nl</a></p>
-              </ul>
             </div>
           </div>
 
