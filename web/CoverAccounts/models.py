@@ -1,6 +1,9 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.conf import settings
 from django.db import models
+
+from hashlib import sha256
 
 import hashlib
 
@@ -28,6 +31,11 @@ class CoverMember(AbstractBaseUser):
 
     is_banned = models.BooleanField(default=False)
 
+    telegram_bot_token = models.CharField(unique=True, default=None, max_length=256, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
+    telegram_chat_id = models.IntegerField(null=True)
+
+    telegram_id_counter = models.IntegerField(default=0)
+
     USERNAME_FIELD = 'cover_id'
 
     #TODO
@@ -51,6 +59,9 @@ class CoverMember(AbstractBaseUser):
     def __unicode__(self):
         return self.email
 
+    def __str__(self):
+        return self.email
+
     @property
     def full_name(self):
         ''' Convenience method, returns the full name '''
@@ -66,3 +77,15 @@ class CoverMember(AbstractBaseUser):
             return static('default_profile_400.png')
         else:
             return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id
+
+    def update_telegram_bot_token(self):
+        self.telegram_id_counter += 1
+
+        hasher = sha256()
+        hasher.update(str(self.pk).encode('utf-8'))
+        hasher.update(str(self.telegram_id_counter).encode('utf-8'))
+        hasher.update(settings.TELEGRAM_HASH_SALT.encode('utf-8'))
+
+        self.telegram_bot_token =  hasher.hexdigest()
+
+        print(self.telegram_bot_token)
