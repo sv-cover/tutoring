@@ -1,3 +1,6 @@
+import requests
+
+from django.conf import settings
 from django.core.mail import send_mail
 from django.http import Http404
 from django.core.urlresolvers import reverse
@@ -52,6 +55,22 @@ class MessageCreateView(CreateView):
         form.instance.conversation = Conversation.objects.get(pk=self.kwargs['pk'])
 
         response = super(MessageCreateView, self).form_valid(form)
+
+        conversation = self.object.conversation
+        participants = list(conversation.participants.all())
+        for p in participants:
+            sender = self.object.sender.full_name if p != self.request.user else 'You'
+            msg = '*%s* @ %s:\n%s' % (sender, conversation.subject, self.object.message)
+
+            if p.telegram_chat_id:
+                url = 'https://api.telegram.org/bot{}/sendMessage' \
+                    .format(settings.TELEGRAM_BOT_API_TOKEN)
+                telegram_response = requests.get(url, params = {
+                                    'text':msg,
+                                    'chat_id':p.telegram_chat_id,
+                                    'parse_mode':'Markdown'
+                                })
+                print(p, telegram_response)
 
         return response
 
