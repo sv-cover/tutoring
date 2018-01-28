@@ -1,4 +1,5 @@
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail, send_mass_mail
