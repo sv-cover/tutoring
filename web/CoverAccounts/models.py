@@ -19,7 +19,8 @@ class CoverMember(AbstractBaseUser):
     last_name = models.CharField(max_length = 255)
 
     appears_anonymous = models.BooleanField(default=False, verbose_name="Hide personal details", help_text="Checking this means that your name and profile picture will not appear anywhere on this page. However your tutoring offers and requests can still be seen, including what you wrote in their descriptions.")
-    receives_mail_notification = models.BooleanField(default=True, verbose_name="Enable mail digests", help_text="If checked, you will be receiving weekly email updates on what you missed.")
+    receives_weekly_mails = models.BooleanField(default=False, verbose_name="Enable weekly mail digests", help_text="If checked, you will be receiving weekly email updates on new messages, but of course only if there are unread ones.")
+    receives_daily_mails = models.BooleanField(default=True, verbose_name="Enable daily mail digests", help_text="If checked, you will be receiving daily email updates on new messages, but of course only if there are unread ones.")
 
     first_login = models.DateTimeField(auto_now_add=True)
 

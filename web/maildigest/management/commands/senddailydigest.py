@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail, send_mass_mail
@@ -17,20 +17,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        self.stdout.write('{} - Start executing Email Digest command.\nSend emails to the following users:'.format(datetime.now()))
+        self.stdout.write('{} - Start executing Daily Email Digest command.\nSend emails to the following users:'.format(datetime.now(timezone.utc)))
 
         messages_to_send = []
 
-        email_subject = 'CACTuS - Here is what happened'
+        email_subject = 'CACTuS - Daily update'
         email_from = 'tutoring@svcover.nl'
 
-        mail_template_plain = get_template('maildigest/weekly_digest.txt')
-        mail_template_html = get_template('maildigest/weekly_digest.html')
+        mail_template_plain = get_template('maildigest/daily_digest.txt')
+        mail_template_html = get_template('maildigest/daily_digest.html')
 
-        for user in CoverMember.objects.filter(receives_mail_notification=True):
+        for user in CoverMember.objects.filter(receives_daily_mails=True):
 
             conversations = list(Conversation.objects.conversationsOf(user))
-            conversations = [c for c in conversations if not user in c.latest_message().read_by.all()]
+            conversations = [c for c in conversations if not user in c.latest_message().read_by.all() and datetime.now(timezone.utc) - c.latest_message().sent_at <= timedelta(hours=24)]
 
             if len(conversations) == 0:
                 continue
