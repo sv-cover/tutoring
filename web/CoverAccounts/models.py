@@ -3,7 +3,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.db import models
 
-from hashlib import sha256
+from hashlib import sha1
 
 import hashlib
 
@@ -31,7 +31,7 @@ class CoverMember(AbstractBaseUser):
 
     is_banned = models.BooleanField(default=False)
 
-    telegram_bot_token = models.CharField(unique=True, default=None, max_length=256, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
+    telegram_bot_token = models.CharField(unique=True, default=None, max_length=160, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
     telegram_chat_id = models.IntegerField(null=True)
 
     telegram_id_counter = models.IntegerField(default=0)
@@ -81,7 +81,7 @@ class CoverMember(AbstractBaseUser):
     def update_telegram_bot_token(self):
         self.telegram_id_counter += 1
 
-        hasher = sha256()
+        hasher = sha1()
         hasher.update(str(self.pk).encode('utf-8'))
         hasher.update(str(self.telegram_id_counter).encode('utf-8'))
         hasher.update(settings.TELEGRAM_HASH_SALT.encode('utf-8'))
