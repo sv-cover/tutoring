@@ -23,7 +23,7 @@ def webhook(request):
 
     # answer = 'Sorry, I don\'t know what you want from me. If you want to reply to someone\'s message, please use telegram\'s "reply" feature to do so.'
 
-    answer = ''
+    answer = '*Owl noises*'
 
     start_command = re.search('/start (.*)', chat_text)
     if start_command:
@@ -33,13 +33,13 @@ def webhook(request):
         user.telegram_chat_id = chat_id
         user.save()
 
-        answer = 'Hoot hoot, %s! I am CACTuS Messenger. My job is to keep you up to date with all messages you receive in the tutoring system.\nIt\'s all set up! Just leave me doing my job in the background and  I\'ll let you know when the next message drops in.' % (user.first_name)
+        answer = 'Hoot hoot, %s!\nI am the CACTuS Messenger. My job is to keep you up to date with all messages you receive in Cover\'s tutoring system. Just let me do my job in the background and I\'ll let you know when the next message drops in.' % (user.first_name)
 
     elif chat_reply:
-        pass
+        answer = 'Oh look at you being fancy! This is not yet possible but my friends are on it ;)'
 
     url = 'https://api.telegram.org/bot{}/sendMessage' \
         .format(settings.TELEGRAM_BOT_API_TOKEN)
-    response = requests.get(url, params={'text':chat_text, 'chat_id':chat_id})
+    response = requests.get(url, params={'text':answer, 'chat_id':chat_id})
 
     return HttpResponse(status=200)
