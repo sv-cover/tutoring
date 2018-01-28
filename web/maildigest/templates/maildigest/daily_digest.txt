@@ -1,6 +1,6 @@
-Hi {{user.first_name}}!
+Good morning {{user.first_name}}!
 
-Here is what happened this week on CACTuS, Cover's tutor finder.
+Here is what happened yesterday on CACTuS, Cover's tutor finder.
 To summarize, you have {{n_conversations}} ongoing conversations with unread messages.
 
 Here they are:
