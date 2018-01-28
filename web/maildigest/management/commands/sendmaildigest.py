@@ -22,10 +22,10 @@ class Command(BaseCommand):
         messages_to_send = []
 
         email_subject = 'CACTuS - Here is what happened'
-        email_from = 'testbot@bankosegger.at'
+        email_from = 'tutoring@svcover.nl'
 
-        mail_template_plain = get_template('maildigest/digest.txt')
-        mail_template_html = get_template('maildigest/digest.html')
+        mail_template_plain = get_template('maildigest/weekly_digest.txt')
+        mail_template_html = get_template('maildigest/weekly_digest.html')
 
         for user in CoverMember.objects.filter(receives_mail_notification=True):
 
