@@ -5,19 +5,19 @@ services:
     restart: always
     build: ./web
     expose:
-      - "8000"
+      - "80"
     depends_on:
       - db
     volumes:
       - ./web:/usr/src/app
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && pip install pyyaml && python manage.py collectstatic --no-input && python manage.py loaddata languages.yaml && python manage.py loaddata subjects.yaml &&  gunicorn tutoring.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && pip install pyyaml && python manage.py collectstatic --no-input && python manage.py loaddata languages.yaml && python manage.py loaddata subjects.yaml &&  gunicorn tutoring.wsgi -b 0.0.0.0:80"
 
   nginx:
     container_name: studcee-tut-nginx
     restart: always
     build: ./nginx
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
       - /static
     volumes_from:

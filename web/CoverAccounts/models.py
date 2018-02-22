@@ -1,6 +1,9 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.conf import settings
 from django.db import models
+
+from hashlib import sha1
 
 import hashlib
 
@@ -16,7 +19,8 @@ class CoverMember(AbstractBaseUser):
     last_name = models.CharField(max_length = 255)
 
     appears_anonymous = models.BooleanField(default=False, verbose_name="Hide personal details", help_text="Checking this means that your name and profile picture will not appear anywhere on this page. However your tutoring offers and requests can still be seen, including what you wrote in their descriptions.")
-    receives_mail_notification = models.BooleanField(default=True, verbose_name="Enable mail digests", help_text="If checked, you will be receiving weekly email updates on what you missed.")
+    receives_weekly_mails = models.BooleanField(default=False, verbose_name="Enable weekly mail digests", help_text="If checked, you will be receiving weekly email updates on new messages, but of course only if there are unread ones.")
+    receives_daily_mails = models.BooleanField(default=True, verbose_name="Enable daily mail digests", help_text="If checked, you will be receiving daily email updates on new messages, but of course only if there are unread ones.")
 
     first_login = models.DateTimeField(auto_now_add=True)
 
@@ -27,6 +31,11 @@ class CoverMember(AbstractBaseUser):
     is_alpha_user = models.BooleanField(default=False)
 
     is_banned = models.BooleanField(default=False)
+
+    telegram_bot_token = models.CharField(default=None, max_length=160, verbose_name="Telegram Bot Token", help_text="You can setup the \"CACTuS Messenger\" bot in Telegram. The bot will ask you for this code.")
+    telegram_chat_id = models.IntegerField(null=True)
+
+    telegram_id_counter = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'cover_id'
 
@@ -51,6 +60,9 @@ class CoverMember(AbstractBaseUser):
     def __unicode__(self):
         return self.email
 
+    def __str__(self):
+        return self.email
+
     @property
     def full_name(self):
         ''' Convenience method, returns the full name '''
@@ -66,3 +78,15 @@ class CoverMember(AbstractBaseUser):
             return static('default_profile_400.png')
         else:
             return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id
+
+    def update_telegram_bot_token(self):
+        self.telegram_id_counter += 1
+
+        hasher = sha1()
+        hasher.update(str(self.pk).encode('utf-8'))
+        hasher.update(str(self.telegram_id_counter).encode('utf-8'))
+        hasher.update(settings.TELEGRAM_HASH_SALT.encode('utf-8'))
+
+        self.telegram_bot_token =  hasher.hexdigest()
+
+        print(self.telegram_bot_token)

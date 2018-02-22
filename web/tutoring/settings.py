@@ -25,7 +25,7 @@ SECRET_KEY = '<secret>'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'tutoring.svcover.nl', 'api.telegram.org']
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'CoverAccounts',
     'messages',
     'tutors',
-    'maildigest'
+    'maildigest',
+    'telegram_bot'
 ]
 
 MIDDLEWARE = [
@@ -145,9 +146,12 @@ COVER_API_SECRET = '<secret>'
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'svcover.nl'
-EMAIL_PORT = '687'
-EMAIL_HOST_USER = 'studcee'
-EMAIL_HOST_PASSWORD = '<password>'
-EMAIL_USE_TLS = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '687'
+# EMAIL_USE_TLS = True
+
+
+TELEGRAM_BOT_API_TOKEN = '526055532:AAEMi52u50X0Q29vRD30R65syeiL-a_vz0k'
+TELEGRAM_HASH_SALT = 'K,`h[c\'R*:kGsUEV:uqUX8>(,?H$dHe6!x@Lek='

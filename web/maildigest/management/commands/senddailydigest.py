@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+from django.utils import timezone
+
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail, send_mass_mail
 from django.core.mail import get_connection, EmailMultiAlternatives
@@ -14,18 +17,21 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
+
+        self.stdout.write('{} - Start executing Daily Email Digest command.\nSend emails to the following users:'.format(datetime.now(timezone.utc)))
+
         messages_to_send = []
 
-        email_subject = 'CACTuS - Here is what happened'
-        email_from = 'studcee'
+        email_subject = 'CACTuS - Daily update'
+        email_from = 'tutoring@svcover.nl'
 
-        mail_template_plain = get_template('maildigest/digest.txt')
-        mail_template_html = get_template('maildigest/digest.html')
+        mail_template_plain = get_template('maildigest/daily_digest.txt')
+        mail_template_html = get_template('maildigest/daily_digest.html')
 
-        for user in CoverMember.objects.filter(is_alpha_user=True, receives_mail_notification=True):
+        for user in CoverMember.objects.filter(receives_daily_mails=True):
 
             conversations = list(Conversation.objects.conversationsOf(user))
-            conversations = [c for c in conversations if not user in c.latest_message().read_by.all()]
+            conversations = [c for c in conversations if not user in c.latest_message().read_by.all() and datetime.now(timezone.utc) - c.latest_message().sent_at <= timedelta(hours=24)]
 
             if len(conversations) == 0:
                 continue
@@ -41,11 +47,12 @@ class Command(BaseCommand):
             message = EmailMultiAlternatives(email_subject, mail_content_plain, email_from, [user.email])
             message.attach_alternative(mail_content_html, 'text/html')
 
+            print(' - {}'.format(user))
             messages_to_send.append(message)
 
-        self.stdout.write('Email Digest command executing...')
+        self.stdout.write('Talking to mail server...')
 
         with get_connection() as connection:
             connection.send_messages(messages_to_send)
 
-        self.stdout.write('Mail sent to {} people!'.format(len(messages_to_send)))
+        self.stdout.write('Done! Mails successfully sent to {n} people!\n{t} - Done.\n---'.format(n=len(messages_to_send), t=datetime.now()))
