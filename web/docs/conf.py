@@ -29,9 +29,9 @@ author = u'Rafael Bankosegger, René Mellema'
 description = u"Cover's Advanced Course Tutoring System"
 
 # The short X.Y version
-version = u''
+version = u'1.2'
 # The full version, including alpha/beta/rc tags
-release = u''
+release = u'1.2.0'
 
 
 # -- General configuration ---------------------------------------------------
