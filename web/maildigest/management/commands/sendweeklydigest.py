@@ -31,7 +31,11 @@ class Command(BaseCommand):
         for user in CoverMember.objects.filter(receives_weekly_mails=True):
 
             conversations = list(Conversation.objects.conversationsOf(user))
-            conversations = [c for c in conversations if not user in c.latest_message().read_by.all() and datetime.now(timezone.utc) - c.latest_message().sent_at <= timedelta(days=7)]
+            conversations = [c for c in conversations
+                             if c.latest_message()
+                             and not user in c.latest_message().read_by.all()
+                             and datetime.now(timezone.utc) - c.latest_message().sent_at
+                             <= timedelta(days=7)]
 
             if len(conversations) == 0:
                 continue
