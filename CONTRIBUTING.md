@@ -1,8 +1,8 @@
 Thank you for helping make CACTuS a great system!
 
-Following these guidelines will help us incorporate your issue/pull request
-into our system, which means that it will be addressed earlier. After all, we
-also only have limited time!
+We highly recommend that you follow our guidelines. Issues/pull requests that
+follow our guidelines are more likely to be addressed earlier and approved for
+deployment.
 
 There are many ways to contribute to CACTuS, such as becoming a tutor,
 submitting bugs, writing documentation, improving the style of the source code,
@@ -28,7 +28,9 @@ problem.
 # Suggesting Features
 If you want to suggest a new feature, you can use the issue tracker for that.
 Please [make an issue][new issue] with a clear description of the suggested
-feature, why it is needed, and how it should work.
+feature, why it is needed, and how it should work. Please also check to see if
+there are any similar suggestions, so you do not suggest something that has
+already been suggested.
 
 If you want to work on a feature that has not been discussed on the issues
 tracker, please suggest it first. Then we know that you are working on this, and
