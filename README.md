@@ -3,8 +3,6 @@
 This is the source code for the Cover Tutoring system which you can find on
 https://tutoring.svcover.nl.
 
-# Usage
-
 # Install
 As requirements you'll need:
 - Python
