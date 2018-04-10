@@ -153,5 +153,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_USE_TLS = True
 
 
-TELEGRAM_BOT_API_TOKEN = '526055532:AAEMi52u50X0Q29vRD30R65syeiL-a_vz0k'
-TELEGRAM_HASH_SALT = 'K,`h[c\'R*:kGsUEV:uqUX8>(,?H$dHe6!x@Lek='
+TELEGRAM_BOT_API_TOKEN = '<secret>'
+TELEGRAM_HASH_SALT = '<secret>'
