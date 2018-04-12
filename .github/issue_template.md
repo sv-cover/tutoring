@@ -7,6 +7,8 @@ issues are reserved for feature requests and bug reports.
   - [ ] support request => Please do not submit support request here, see note
     at the top of this template.
 
+(Select the correct option by putting a x in the box)
+
 
 * **What is the current behavior?**
 

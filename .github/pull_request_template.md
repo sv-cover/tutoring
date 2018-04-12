@@ -4,6 +4,8 @@
 - [ ] Docs have been added / updated (for bug fixes / features)
 - [ ] The linter did not find any new errors or warnings
 
+(Select the right option by putting a x in the box)
+
 
 * **What kind of change does this PR introduce?** (Bug fix, feature, docs
   update, ...)
