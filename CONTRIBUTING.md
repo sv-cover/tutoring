@@ -59,6 +59,6 @@ it can happen that we do not reply immediately. If we have not gotten a reply
 from you within two weeks, we might close the issue.
 
 [email]: mailto:tutoring@svcover.nl
-[issue tracker]:
-[new issue]:
-[readme]:
+[issue tracker]: https://github.com/StudCee/tutoring/issues
+[new issue]: https://github.com/StudCee/tutoring/issues/new
+[readme]: https://github.com/StudCee/tutoring/blob/dev/README.md
