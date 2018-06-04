@@ -1,28 +1,32 @@
+"""
+This module provides a way for reading and manipulating :py:class:`Conversation` s and
+:py:class:`Message` s.
+"""
 from django.db import models
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 
-
 from CoverAccounts.models import CoverMember
 
 class ConversationManager(models.Manager):
     '''
-        The manager for Conversation.
+    The manager for Conversations.
     '''
 
     def conversationsOf(self, user):
         if self.count() > 0:
-            return sorted(self.all().filter(participants__in=[user]), key=lambda c: c.latest_message().sent_at if c.latest_message() else timezone.now(), reverse=True)
-        else:
-            return []
-    #
+            return sorted(self.all().filter(participants__in=[user]),
+                          key=lambda c: c.latest_message().sent_at
+                          if c.latest_message() else timezone.now(), reverse=True)
+        return []
+
     # def sorted_by_recency(self):
     #     return sorted(self.all(), key=lambda c: c.latest_message.sent_at)
 
 class Conversation(models.Model):
     '''
-        A conversation, between one or more CoverMembers
+    A conversation, between one or more CoverMembers
     '''
 
     subject = models.CharField('Subject', max_length=140)
@@ -56,10 +60,12 @@ class Message(models.Model):
     '''
 
     # The converation in which this message was sent
-    conversation = models.ForeignKey(Conversation, related_name='messages', null=True, blank=True, verbose_name='Conversation')
+    conversation = models.ForeignKey(Conversation, related_name='messages', null=True, blank=True,
+                                     verbose_name='Conversation')
 
     # The CoverMember sending this message.
-    sender = models.ForeignKey(CoverMember, default=None, related_name='sent_messages', on_delete=models.CASCADE)
+    sender = models.ForeignKey(CoverMember, default=None, related_name='sent_messages',
+                               on_delete=models.CASCADE)
 
     # The message string itself.
     message = models.TextField(default='')
