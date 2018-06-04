@@ -7,7 +7,7 @@ def conversationsOfUser(request):
         return {}
     else:
         unread_message_count = 0
-        conversations = list(Conversation.objects.conversationsOf(request.user))
+        conversations = list(Conversation.objects.conversations_of(request.user))
 
         for conv in conversations:
 

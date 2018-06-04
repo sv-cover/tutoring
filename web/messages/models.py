@@ -13,8 +13,8 @@ class ConversationManager(models.Manager):
     '''
     The manager for Conversations.
     '''
-
-    def conversationsOf(self, user):
+    def conversations_of(self, user):
+        """Get all the conversations for a single `user`"""
         if self.count() > 0:
             return sorted(self.all().filter(participants__in=[user]),
                           key=lambda c: c.latest_message().sent_at
