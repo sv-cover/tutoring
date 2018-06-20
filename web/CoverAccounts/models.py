@@ -83,7 +83,7 @@ class CoverMember(AbstractBaseUser):
         if self.appears_anonymous:
             return static('default_profile_400.png')
         else:
-            return 'http://svcover.nl/foto.php?lid_id=%d&format=square&width=120' % self.cover_id
+            return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
 
     def update_telegram_bot_token(self):
         self.telegram_id_counter += 1
