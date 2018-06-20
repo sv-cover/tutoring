@@ -3,6 +3,7 @@ from django.contrib.auth import get_user, authenticate, login
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.signals import user_logged_out
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.utils.functional import SimpleLazyObject
 from django.shortcuts import render
@@ -15,7 +16,7 @@ from .models import UnknownCoverMember
 def get_cover_user(request):
     """
     Determines the correct user object corresponding to the current coversession.
-    Returns 
+    Returns
     - a CoverMember object if the user is a known user
     - an UnknownCoverMember object if the user is a logged in Covermember who is unkown to the system
     - an AnonymousUser object if there is no active Cover session
@@ -85,7 +86,7 @@ class RestrictAdminMiddleware(object):
 
 class RestrictUnknownUserMiddleware(object):
     """
-    Restricts access for anonymous users and unknown Cover members. 
+    Restricts access for anonymous users and unknown Cover members.
     """
 
     def __init__(self, get_response):

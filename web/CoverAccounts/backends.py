@@ -37,7 +37,7 @@ class CoversiteAuthBackend:
     def authenticate(self, request, session=None):
         """
         Authenticates a known Cover Member based on the a CoverSession object.
-        Updates the locally stored data of the member and returns an authenticated CoverMember object 
+        Updates the locally stored data of the member and returns an authenticated CoverMember object
         or None if no member could be authenticated.
         """
         if not session:
