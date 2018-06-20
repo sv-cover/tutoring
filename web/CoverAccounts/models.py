@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, AnonymousUser
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.db import models
@@ -6,6 +6,7 @@ from django.db import models
 from hashlib import sha1
 
 import hashlib
+
 
 class CoverMember(AbstractBaseUser):
     ''' Model of a cover member. Substitutes Django's default user model. '''
@@ -65,12 +66,17 @@ class CoverMember(AbstractBaseUser):
 
     @property
     def full_name(self):
-        ''' Convenience method, returns the full name '''
+        """ Convenience method, returns the full name """
 
         if self.appears_anonymous:
             return "Anonymous"
         else:
-            return "%s %s" % (self.first_name, self.last_name)
+            return "{} {}".format(self.first_name, self.last_name)
+
+    @property
+    def is_unknown(self):
+        """ Provide distinction from Cover members who are unknown to the system. """
+        return False
 
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
@@ -90,3 +96,54 @@ class CoverMember(AbstractBaseUser):
         self.telegram_bot_token =  hasher.hexdigest()
 
         print(self.telegram_bot_token)
+
+
+class UnknownCoverMember(AnonymousUser):
+    def __init__(self, cover_session):
+        self.cover_session = cover_session
+
+    def __str__(self):
+        return 'UnknownCoverMember'
+
+    @property
+    def first_name(self):
+        return self.cover_session.user['voornaam']
+        
+    @property
+    def last_name(self):
+        if self.cover_session.user['tussenvoegsel'] == "":
+            return self.cover_session.user['achternaam']
+        return "{tussenvoegsel} {achternaam}".format(**self.cover_session.user)
+
+    @property
+    def full_name(self):
+        """ Convenience method, returns the full name """
+        return "{} {}".format(self.first_name, self.last_name)
+
+    @property
+    def is_anonymous(self):
+        """ Provide distinction from AnonymousUser. The user is unknown to the sytem, but not anonymous. """
+        return False
+
+    @property
+    def is_unknown(self):
+        """ Provide distinction from Cover members who are known to the system. """
+        return True
+
+    def get_username(self):
+        return self.cover_session.user['id']
+
+    def as_cover_member(self):
+        """ Returns this user as a CoverMember object. """
+        cover_member = CoverMember(cover_id=self.cover_session.user['id'])
+        cover_member.email = self.cover_session.user['email']
+        cover_member.first_name = self.first_name
+        cover_member.last_name = self.last_name
+
+        if cover_member.email in settings.STAFF_MEMBERS:
+            cover_member.is_staff = True
+            cover_member.is_admin = True
+
+        cover_member.update_telegram_bot_token()
+
+        return cover_member

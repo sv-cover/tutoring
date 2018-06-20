@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+  First use
+{% endblock %}
+
+{% block container %}
+
+<h1>Hello!</h1>
+<br/>
+<p>Welcome to CACTuS, Cover's systems to match students in need of tutoring with students who want to help them out.</p>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Proceed">
+</form>
+
+{% endblock %}

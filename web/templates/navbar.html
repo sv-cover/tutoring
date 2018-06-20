@@ -1,4 +1,4 @@
-
+{% load cover_session %}
 
 <nav class="navbar navbar-cover" role="navigation">
   <div class="container-fluid">
@@ -16,7 +16,7 @@
 
     <div id="navbar-main-collapse" class="navbar-collapse collapse">
       <ul class="navbar-right">
-        {% if not user.is_anonymous %}
+        {% if not user.is_anonymous and not user.is_unknown %}
           {% if not user_is_tutor %}
             <li><a href="{% url 'tutors:offer_create'%}">Become a Tutor</a></li>
           {% endif %}
@@ -30,20 +30,20 @@
               <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu">
+              <li><a href="{% url 'terms_conditions' %}"><i class="fa fa-fw fa-gavel" aria-hidden="true"></i> Terms and conditions</a></li>
+              {% if user.is_staff %}
+                <li><a href="/admin/"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Admin</a></li>
+              {% endif %}
+              <li class="divider" role="separator"></li>
               <li class="dropdown-header"> Logged in as {{request.user.full_name}}</li>
               {% if user_is_tutor %}
                 <li><a href="{% url 'tutors:offer_update' %}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
               {% else %}
                 <li><a href="{% url 'CoverAccounts:settings'%}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
               {% endif %}
-              <li><a href="{% url 'CoverAccounts:logout' %}"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
-              <!-- <li><hr/></li> -->
-              <li><a href="{% url 'terms_conditions' %}"><i class="fa fa-fw fa-gavel" aria-hidden="true"></i> Terms and conditions</a></li>
-              {% if user.is_staff %}
-                <li><a href="/admin/"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Admin</a></li>
-              {% endif %}
-          {% else %}
-          <li><a href="{% url 'CoverAccounts:login' %}">Login</a></li>
+              <li><a href="{% cover_logout_url %}"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
+          {% elif user.is_anonymous %}
+              <li><a href="{% cover_login_url %}">Login</a></li>
           {% endif %}
           </ul>
       </ul>

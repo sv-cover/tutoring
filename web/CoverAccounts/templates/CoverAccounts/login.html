@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load cover_session %}
 
 {% block head_title %}
   Login
@@ -8,16 +9,12 @@
 
 {% block container %}
 
-<h1> Login </h1>
+<h1>Hello!</h1>
 <br/>
-<p> You must be a Cover member for using this service. <br/> Please enter your email and password from your <a href='https://svcover.nl'>svcover.nl</a> account to sign in.
-<hr/>
-
-<form method='POST' action=''>{% csrf_token %}
-{{ form|crispy }}
-
-<input class='btn btn-default' type='submit' value='Login' />
-
-</form>
-
+<p>
+    Welcome to CACTuS, Cover's systems to match students in need of tutoring with students who want to help them out. You need to be signed in Cover's website to use it.
+</p>
+<p>
+    <a class="btn btn-primary" href="{% cover_login_url %}">Log in</a>
+</p>
 {% endblock %}

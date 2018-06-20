@@ -50,12 +50,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    'CoverAccounts.middleware.CoverAuthenticationMiddleware',
     'CoverAccounts.middleware.RestrictAdminMiddleware',
-    'CoverAccounts.middleware.RestrictNonMemberMiddleware'
+    'CoverAccounts.middleware.RestrictUnknownUserMiddleware'
 ]
 
 ROOT_URLCONF = 'tutoring.urls'
