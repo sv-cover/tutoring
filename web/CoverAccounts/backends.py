@@ -69,9 +69,7 @@ class CoversiteAuthBackend:
                 else:
                     coverMember.last_name = "{tussenvoegsel} {achternaam}".format(**session.user)
 
-                STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
-
-                if session.user['email'] in STAFF_MEMBERS:
+                if session.user['email'] in settings.STAFF_MEMBERS:
                     coverMember.is_staff = True
                     coverMember.is_admin = True
 
