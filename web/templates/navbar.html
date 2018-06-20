@@ -43,7 +43,7 @@
               {% endif %}
               <li><a href="{% cover_logout_url %}"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
           {% elif user.is_anonymous %}
-              <li><a href="{% cover_login_url %}">Login</a></li>
+              <li><a href="{% cover_login_url next_url='tutors:offer_list' %}">Login</a></li>
           {% endif %}
           </ul>
       </ul>

@@ -15,6 +15,6 @@
     Welcome to CACTuS, Cover's systems to match students in need of tutoring with students who want to help them out. You need to be signed in Cover's website to use it.
 </p>
 <p>
-    <a class="btn btn-primary" href="{% cover_login_url %}">Log in</a>
+    <a class="btn btn-primary" href="{% cover_login_url next_url='tutors:offer_list' %}">Log in</a>
 </p>
 {% endblock %}

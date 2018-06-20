@@ -2,6 +2,7 @@ from urlparse import urlparse, urlunparse, parse_qs
 
 from django import template
 from django.conf import settings
+from django.urls import NoReverseMatch, reverse
 from django.utils.datastructures import MultiValueDict
 from django.utils.http import urlencode
 
@@ -16,6 +17,11 @@ def _cover_session_url(base, context=None, next_url=None, next_field='referrer')
             next_url = context.get('request').build_absolute_uri()
         else:
             return base
+    else:
+        try:
+            next_url = context.get('request').build_absolute_uri(reverse(next_url))
+        except NoReverseMatch:
+            pass
 
     parts = list(urlparse(base))
     query_parts = MultiValueDict(parse_qs(parts[4]))
@@ -26,13 +32,13 @@ def _cover_session_url(base, context=None, next_url=None, next_field='referrer')
 
 @register.simple_tag(takes_context=True)
 def cover_login_url(context, **kwargs):
-    """ Provides a shortcut for the Cover login url  """
+    """ Provides a shortcut for the Cover login url """
     base = getattr(settings, 'COVER_LOGIN_URL', 'https://www.svcover.nl/sessions.php?view=login')
     return _cover_session_url(base, context=context, **kwargs)
 
 
 @register.simple_tag(takes_context=True)
 def cover_logout_url(context, **kwargs):
-    """ Provides a shortcut for the Cover logout url  """
+    """ Provides a shortcut for the Cover logout url """
     base = getattr(settings, 'COVER_LOGOUT_URL', 'https://www.svcover.nl/sessions.php?view=logout')
     return _cover_session_url(base, context=context, **kwargs)
