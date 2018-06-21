@@ -4,17 +4,17 @@
 {% load cover_session %}
 
 {% block head_title %}
-  Login
+    Login
 {% endblock %}
 
 {% block container %}
+    <h1>Hello!</h1>
 
-<h1>Hello!</h1>
-<br/>
-<p>
-    Welcome to CACTuS, Cover's systems to match students in need of tutoring with students who want to help them out. You need to be signed in Cover's website to use it.
-</p>
-<p>
-    <a class="btn btn-primary" href="{% cover_login_url next_url='tutors:offer_list' %}">Log in</a>
-</p>
+    <p>
+        Welcome to CACTuS, Cover's systems to match students in need of tutoring with students who want to help them out. You need to be signed in Cover's website to use it.
+    </p>
+
+    <p>
+        <a class="btn btn-primary" href="{% cover_login_url next_url='tutors:offer_list' %}">Log in</a>
+    </p>
 {% endblock %}
