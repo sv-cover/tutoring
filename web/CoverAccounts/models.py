@@ -69,9 +69,9 @@ class CoverMember(AbstractBaseUser):
         """ Convenience method, returns the full name """
 
         if self.appears_anonymous:
-            return "Anonymous"
+            return 'Anonymous'
         else:
-            return "{} {}".format(self.first_name, self.last_name)
+            return u'{} {}'.format(self.first_name, self.last_name)
 
     @property
     def is_unknown(self):
