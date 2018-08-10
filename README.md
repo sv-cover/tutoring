@@ -45,6 +45,21 @@ When you're done, wrap up by pressing Ctrl+C and:
 deactivate
 ```
 
+## Running on your local machine
+
+If you want to test the site on your local machine (which you should do!), you
+will also need the [cover-api test
+script](https://bitbucket.org/cover-webcie/coverapi-tester/) and a recent
+version of [PHP](https://secure.php.net) (>=7). You can place the api test
+script in the main folder of the project, and then run:
+
+```bash
+php -S localhost:8080
+```
+
+Now you can log in to your local server using the login details in the coverapi
+tester script!
+
 ## Sending mails
 
 You can trigger the mail digest by:
