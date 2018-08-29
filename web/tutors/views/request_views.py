@@ -46,6 +46,7 @@ class RequestUpdateView(UpdateView):
     model = Request
     form_class = RequestForm
     template_name = 'tutors/request_update.html'
+    context_object_name = 'tutoring_request'
 
     def get_object(self, queryset=None):
         tutoring_request_pk = self.kwargs.get('pk')
@@ -64,6 +65,7 @@ class RequestDeleteView(DeleteView):
     model = Request
 
     template_name = 'tutors/request_confirm_delete.html'
+    context_object_name = 'tutoring_request'
 
     def get_object(self, queryset=None):
         tutoring_request_pk = self.kwargs.get('pk')

@@ -84,7 +84,7 @@ class ConversationListView(ListView):
     template_name = 'messages/conversation_list.html'
 
     def get_queryset(self):
-        return self.model.objects.conversationsOf(self.request.user)
+        return self.model.objects.conversations_of(self.request.user)
 
 class ConversationDetailView(DetailView):
 

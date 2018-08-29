@@ -50,12 +50,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    'CoverAccounts.middleware.CoverAuthenticationMiddleware',
     'CoverAccounts.middleware.RestrictAdminMiddleware',
-    'CoverAccounts.middleware.RestrictNonMemberMiddleware'
+    'CoverAccounts.middleware.RestrictUnknownUserMiddleware'
 ]
 
 ROOT_URLCONF = 'tutoring.urls'
@@ -134,24 +134,32 @@ STATIC_ROOT = '/home/commissies/studcee/studcee-tutoring/static'
 AUTH_USER_MODEL = 'CoverAccounts.CoverMember'
 AUTHENTICATION_BACKENDS = ['CoverAccounts.backends.CoversiteAuthBackend', ]
 
+STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
+
 # Cover API settings
 # https://bitbucket.org/cover-webcie/coverapi
+if DEBUG:
+    COVER_API_URL = 'http://localhost:8080/api.php'
+    COVER_LOGIN_URL = 'http://localhost:8080/api.php?view=login'
+    COVER_LOGOUT_URL = 'http://localhost/api.php?view=logout'
 
-COVER_API_URL = 'https://www.svcover.nl/api.php'
+    COVER_API_APP = 'test-app'
+    COVER_API_SECRET = 'ultrasecrethashkey'
+else:
+    COVER_API_URL = 'https://www.svcover.nl/api.php'
 
-COVER_API_APP = 'coverapi'
+    COVER_API_APP = 'coverapi'
 
-COVER_API_SECRET = '<secret>'
+    COVER_API_SECRET = '<secret>'
 
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
 EMAIL_USE_TLS = True
 
 
-TELEGRAM_BOT_API_TOKEN = '526055532:AAEMi52u50X0Q29vRD30R65syeiL-a_vz0k'
-TELEGRAM_HASH_SALT = 'K,`h[c\'R*:kGsUEV:uqUX8>(,?H$dHe6!x@Lek='
+TELEGRAM_BOT_API_TOKEN = '<secret>'
+TELEGRAM_HASH_SALT = '<secret>'

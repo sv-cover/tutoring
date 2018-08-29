@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
         for user in CoverMember.objects.filter(receives_daily_mails=True):
 
-            conversations = list(Conversation.objects.conversationsOf(user))
+            conversations = list(Conversation.objects.conversations_of(user))
             conversations = [c for c in conversations
                              if c.latest_message()
                              and not user in c.latest_message().read_by.all()

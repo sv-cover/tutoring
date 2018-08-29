@@ -25,18 +25,18 @@ Update profile
   <table class='table'>
     <tr>
       <td>Cover ID</td>
-      <td>{{request.user.cover_id}}</td>
+      <td>{{tutoring_request.user.cover_id}}</td>
     </tr>
     <tr>
       <td>Cover email</td>
-      <td>{{request.user.email}}</td>
+      <td>{{tutoring_request.user.email}}</td>
     </tr>
     <tr>
       <td>Name</td>
-      <td>{{request.user.full_name}}</td>
+      <td>{{tutoring_request.user.full_name}}</td>
     </tr>
   </table>
-  <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{request.user.cover_id}}'>Change on svcover.nl</a></p>
+  <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{tutoring_request.user.cover_id}}'>Change on svcover.nl</a></p>
   <br/>
 
   <h4 class="text-primary">Update your profile settings</h4>

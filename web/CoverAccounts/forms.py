@@ -1,17 +1,18 @@
 from django import forms
 from .models import CoverMember
 
-class AuthenticationForm(forms.Form):
+class FirstUseForm(forms.Form):
     """
-    Login form
+    Form used to confirm agreement with the terms before adding a user to the database.
     """
-    email = forms.EmailField(widget=forms.widgets.TextInput)
-    password = forms.CharField(widget=forms.widgets.PasswordInput)
-    user_read_disclaimer = forms.BooleanField(required=True, \
-        label='I have read and agree to the <a href="/terms_conditions">terms and conditions</a> for this website.')
+    user_read_disclaimer = forms.BooleanField(
+        required=True,
+        label='I have read and agree to the <a href="/terms_conditions">terms and conditions</a> for this website.'
+    )
 
     class Meta:
-        fields = ['email', 'password', 'user_read_disclaimer']
+        fields = ['user_read_disclaimer']
+
 
 class SettingsForm(forms.ModelForm):
     class Meta:
