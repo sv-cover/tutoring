@@ -138,12 +138,19 @@ STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
 
 # Cover API settings
 # https://bitbucket.org/cover-webcie/coverapi
+if DEBUG:
+    COVER_API_URL = 'http://localhost:8080/api.php'
+    COVER_LOGIN_URL = 'http://localhost:8080/api.php?view=login'
+    COVER_LOGOUT_URL = 'http://localhost/api.php?view=logout'
 
-COVER_API_URL = 'https://www.svcover.nl/api.php'
+    COVER_API_APP = 'test-app'
+    COVER_API_SECRET = 'ultrasecrethashkey'
+else:
+    COVER_API_URL = 'https://www.svcover.nl/api.php'
 
-COVER_API_APP = 'coverapi'
+    COVER_API_APP = 'coverapi'
 
-COVER_API_SECRET = '<secret>'
+    COVER_API_SECRET = '<secret>'
 
 #Crispy FORM TAGs SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
