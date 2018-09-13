@@ -23,6 +23,12 @@ Profile
   <!-- <br/> -->
   <table class='table'>
     <tr>
+      <td>Cover Profile Picture</td>
+      <td><img src="{{request.user.foto_url}}" alt="Portrait of
+        {{request.user.full_name}}" height="120" width="120"
+                                                 class="img-circle"/></td>
+    </tr>
+    <tr>
       <td>Cover ID</td>
       <td>{{request.user.cover_id}}</td>
     </tr>
