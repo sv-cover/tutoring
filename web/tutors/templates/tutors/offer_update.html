@@ -11,30 +11,19 @@ Update profile
   courses/languages and update your description.
 {% endblock %}
 
-{% block content %}
-
-  {{ block.super }}
-
+{% block extrasettings %}
   <h4 class="text-primary">Update your tutoring offer</h4>
   <div class="alert alert-info">
-    <strong>Info:</strong> Select multiple items by keeping the Command / Option key pressed.
+    <p><strong>Info:</strong> Select multiple items by keeping the Command /
+    Option key pressed.</p>
   </div>
   {{ offer_form|crispy }}
   <br/>
-
-  <input class='btn btn-success' type='submit' value='Submit' />
-  <hr/><br/>
+{% endblock %}
 
 
 
-
+{% block extrabuttons %}
   <h4>Permanently remove your tutoring offer</h4>
   <p><a href="{% url 'tutors:offer_delete' %}" class="btn btn-danger">Delete</a></p>
-
-
-</form>
-
-
-
-
 {% endblock %}
