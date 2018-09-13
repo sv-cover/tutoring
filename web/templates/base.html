@@ -79,7 +79,8 @@
                 <tr>
                   <td>
                     {% for participant in conversation.participants.all %}
-                      <a href="{{conversation.get_absolute_url}}">
+                      <a href="{{conversation.get_absolute_url}}"
+                        title="{{participant.full_name}}">
                       <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
                       </a>
                     {% endfor %}
