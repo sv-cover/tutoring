@@ -23,7 +23,7 @@ Inbox
   {% endif %}
 </tr>
 
-<table class="table">
+<table class="table" id="message-list">
 {% for conversation in conversations2 %}
   <tr>
 
@@ -33,11 +33,20 @@ Inbox
       {% endfor %}
     </td>
 
-    <td>
+    <td class="ellipsis">
+      {% if conversation.latest_message %}
+        {% if not user in conversation.latest_message.read_by.all %}
+          {% if user != conversation.latest_message.sender %}
+            <span class="label label-info">new</span>
+          {% endif %}
+        {% endif %}
+      {% endif %}
       <a href="{{conversation.get_absolute_url}}"> {{conversation.subject }} </a>
       &bull;
       {% if conversation.latest_message %}
         {{conversation.latest_message.sent_at | timesince}} ago
+        <span class="message-preview">{{conversation.latest_message.sender.full_name}}:
+          {{conversation.latest_message.message}}</span>
       {% else %}
         No messages yet!
       {% endif %}

@@ -31,6 +31,37 @@
       .list-nodots li {
         margin-top: 2pt
       }
+
+      table#message-list {
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      td.ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        max-width: 0;
+      }
+
+      span.message-preview {
+        display: block;
+      }
+
+      @media(min-width: 768px) {
+        span.message-preview::before {
+          content: "• ";
+        }
+
+        span.message-preview {
+          display: inline;
+        }
+
+        table#message-list td {
+          white-space: nowrap;
+        }
+      }
     </style>
 
     <title>{% block head_title %}Home{% endblock %} | StudCee Tutoring</title>
