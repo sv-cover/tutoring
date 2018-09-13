@@ -28,7 +28,7 @@ class Offer(models.Model):
     owner = models.OneToOneField(CoverMember, on_delete=models.CASCADE)
 
     # # TODO
-    is_listed = models.BooleanField(default=False)
+    is_listed = models.BooleanField(default=True)
 
     # # TODO
     offered_languages = models.ManyToManyField(Language)

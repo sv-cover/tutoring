@@ -33,6 +33,7 @@ Tutors
 <br/>
 {% for offer in object_list|shuffle %}
 
+  {% if offer.is_listed %}
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="center">
@@ -86,6 +87,7 @@ Tutors
     </div>
   </div>
 </div>
+{% endif %}
 {% endfor %}
 <center>
 
