@@ -9,6 +9,7 @@ class OfferForm(forms.ModelForm):
             'offered_subjects',
             'offered_languages',
             'description',
+            'is_listed',
         ]
 
 class RequestForm(forms.ModelForm):
