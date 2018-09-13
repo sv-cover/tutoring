@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load shuffle %}
 
 {% block head_title %}
 Tutors
@@ -30,7 +31,7 @@ Tutors
 
 <!-- <hr/> -->
 <br/>
-{% for offer in object_list %}
+{% for offer in object_list|shuffle %}
 
 <div class="panel panel-default">
   <div class="panel-body">
