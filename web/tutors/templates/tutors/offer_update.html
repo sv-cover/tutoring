@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "CoverAccounts/settings.html" %}
 
 {% load crispy_forms_tags %}
 
@@ -6,42 +6,14 @@
 Update profile
 {% endblock %}
 
+{% block extratext %}
+  This is also the place to make changes to your tutor profile, so you can add
+  courses/languages and update your description.
+{% endblock %}
+
 {% block content %}
 
-<div class="alert alert-info" role="alert">
-  <h4 class="alert-heading">Profile page</h4>
-  <div>
-    This is your profile page. Here you can see your personal information. You
-    also have the option to appear anonymous to fellow users. This is also the
-    place to make changes to your tutor profile, so you can add
-    courses/languages and update your description. Changes to your personal
-    information need to be done via your Cover profile.
-  </div>
-</div>
-
-<form method='POST' action=''>{% csrf_token %}
-  <h4 class="text-primary">Your svcover.nl profile.</h4>
-  <!-- <br/> -->
-  <table class='table'>
-    <tr>
-      <td>Cover ID</td>
-      <td>{{tutoring_request.user.cover_id}}</td>
-    </tr>
-    <tr>
-      <td>Cover email</td>
-      <td>{{tutoring_request.user.email}}</td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>{{tutoring_request.user.full_name}}</td>
-    </tr>
-  </table>
-  <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{tutoring_request.user.cover_id}}'>Change on svcover.nl</a></p>
-  <br/>
-
-  <h4 class="text-primary">Update your profile settings</h4>
-  {{ settings_form|crispy }}
-  <br/>
+  {{ block.super }}
 
   <h4 class="text-primary">Update your tutoring offer</h4>
   <div class="alert alert-info">

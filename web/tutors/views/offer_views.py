@@ -64,7 +64,7 @@ class OfferUpdateView(FormView):
         settings_form = SettingsForm(instance = request.user)
         settings_form.prefix = 'settings_form'
 
-        return self.render_to_response(self.get_context_data(offer_form=offer_form, settings_form=settings_form))
+        return self.render_to_response(self.get_context_data(offer_form=offer_form, form=settings_form))
 
     def post(self, request, *args, **kwargs):
         offer_form = OfferForm(request.POST, prefix='offer_form', instance=Offer.objects.get(owner=request.user))
