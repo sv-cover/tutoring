@@ -134,6 +134,7 @@ STATIC_ROOT = '/home/commissies/studcee/studcee-tutoring/static'
 AUTH_USER_MODEL = 'CoverAccounts.CoverMember'
 AUTHENTICATION_BACKENDS = ['CoverAccounts.backends.CoversiteAuthBackend', ]
 
+ADMIN_COMMITTEES = ['studcee']
 STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
 
 # Cover API settings

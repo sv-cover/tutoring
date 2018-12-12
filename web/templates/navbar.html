@@ -16,7 +16,7 @@
 
     <div id="navbar-main-collapse" class="navbar-collapse collapse">
       <ul class="navbar-right">
-        {% if not user.is_anonymous and not user.is_unknown %}
+        {% if not user.is_anonymous and not user.is_unknown and user.is_active %}
           {% if not user_is_tutor %}
             <li><a href="{% url 'tutors:offer_create'%}">Become a Tutor</a></li>
           {% endif %}
@@ -44,7 +44,7 @@
               <li><a href="{% cover_logout_url %}"><i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
           {% elif user.is_anonymous %}
               <li><a href="{% cover_login_url next_url='tutors:offer_list' %}">Login</a></li>
-          {% elif user.is_unknown %}
+          {% elif user.is_unknown or not user.is_active %}
               <li><a href="{% cover_logout_url %}">Logout</a></li>
           {% endif %}
           </ul>

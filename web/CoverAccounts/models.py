@@ -144,6 +144,11 @@ class UnknownCoverMember(AnonymousUser):
             cover_member.is_staff = True
             cover_member.is_admin = True
 
+        print 'Committees: ' + str(self.cover_session.user['committees'])
+        if any(c in self.cover_session.user['committees'] for c in settings.ADMIN_COMMITTEES):
+            cover_member.is_staff = True
+            cover_member.is_admin = True
+
         cover_member.update_telegram_bot_token()
 
         return cover_member

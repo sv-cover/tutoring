@@ -1,1 +1,14 @@
-<h1> Account disabled :( </h1>
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    Account disabled
+{% endblock %}
+
+{% block container %}
+    <h1>Account disabled :(</h1>
+    <p>
+        You are not a member of Cover anymore therefore your account is disabled.
+    </p>
+{% endblock %}
