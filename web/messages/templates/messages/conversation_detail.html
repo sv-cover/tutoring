@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load cover_util %}
 
 {% block head_title %}
 {{conversation }}
@@ -14,7 +15,7 @@
   {{conversation}}
 </h3>
 {% for participant in conversation.participants.all %}
-<img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="50" width="50" class="img-circle"/>
+<img src="{% cover_foto_url user=participant %}" alt="Portrait of {% cover_user_name user=participant %}" height="50" width="50" class="img-circle"/>
 {% endfor %}
 </div>
 <hr/>
@@ -22,7 +23,7 @@
 
 <div class="media">
   <div class="media-left">
-      <img src="{{message.sender.foto_url}}" alt="Portrait of {{message.sender.full_name}}" height="50" width="50" class="img-circle"/>
+      <img src="{% cover_foto_url user=message.sender %}" alt="Portrait of {% cover_user_name user=message.sender %}" height="50" width="50" class="img-circle"/>
     </a>
   </div>
   <div class="media-body">
@@ -30,7 +31,7 @@
       {{message.sent_at|timesince}}
     </div>
     <h5 class="media-heading text-primary">
-      {{message.sender.full_name}}
+      {% cover_user_name user=message.sender personalise=True %}
     </h5>
     <p> {{message.message|linebreaksbr}} </p>
 

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load cover_util %}
 
 {% block head_title %}
 Profile
@@ -24,8 +25,8 @@ Profile
   <table class='table'>
     <tr>
       <td>Cover Profile Picture</td>
-      <td><img src="{{request.user.foto_url}}" alt="Portrait of
-        {{request.user.full_name}}" height="120" width="120"
+      <td><img src="{% cover_foto_url %}" alt="Portrait of
+        {% cover_user_name %}" height="120" width="120"
                                                  class="img-circle"/></td>
     </tr>
     <tr>
@@ -38,7 +39,7 @@ Profile
     </tr>
     <tr>
       <td>Name</td>
-      <td>{{request.user.full_name}}</td>
+      <td>{% cover_user_name %}</td>
     </tr>
   </table>
   <p><a class='btn btn-primary' href='https://www.svcover.nl/profiel.php?lid={{request.user.cover_id}}'>Change on svcover.nl</a></p>

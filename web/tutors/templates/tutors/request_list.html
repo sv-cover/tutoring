@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load cover_util %}
 
 {% block head_title %}
 Requests
@@ -63,14 +64,14 @@ Requests
 			<li class="list-group-item">
 		    <div class="media">
 		      <div class="media-left">
-						<img src="{{t_request.owner.foto_url}}" alt="Portrait of {{t_request.owner.full_name}}" height="50" width="50" class="img-circle"/>
+						<img src="{% cover_foto_url user=t_request.owner %}" alt="Portrait of {% cover_user_name user=t_request.owner %}" height="50" width="50" class="img-circle"/>
 		      </div>
 		      <div class="media-body">
 		        <h4 class="media-heading">
 
 						</h4>
 						<h4>
-							{{ t_request.owner.full_name }}
+							{% cover_user_name user=t_request.owner %}
 							{% if t_request.owner == request.user %}<span class="text-muted">(You)</span> {% endif %}
 							<small>{{t_request.created_at|timesince}} ago</small>
 						</h4>

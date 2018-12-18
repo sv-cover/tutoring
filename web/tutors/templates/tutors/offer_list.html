@@ -3,6 +3,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% load shuffle %}
+{% load cover_util %}
 
 {% block head_title %}
 Tutors
@@ -38,8 +39,8 @@ Tutors
   <div class="panel-body">
     <div class="center">
 			<!-- <img src="{% static 'default_profile.jpg' %}" alt="Generic male portrait" height="120" width="120" class="img-circle"/> -->
-      <img src="{{offer.owner.foto_url}}" alt="Portrait of {{offer.owner.full_name}}" height="120" width="120" class="img-circle"/>
-      <h3>{{ offer.owner.full_name }}</h3>
+      <img src="{% cover_foto_url user=offer.owner %}" alt="Portrait of {% cover_user_name user=offer.owner %}" height="120" width="120" class="img-circle"/>
+      <h3>{% cover_user_name user=offer.owner %}</h3>
 			<h4>{% if offer.owner == request.user %}   <span class="text-muted">(You)</span> {% endif %}</h4>
     </div>
     <hr/>

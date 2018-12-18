@@ -1,4 +1,5 @@
 {% load cover_session %}
+{% load cover_util %}
 
 <nav class="navbar navbar-cover" role="navigation">
   <div class="container-fluid">
@@ -35,7 +36,7 @@
                 <li><a href="/admin/"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Admin</a></li>
               {% endif %}
               <li class="divider" role="separator"></li>
-              <li class="dropdown-header"> Logged in as {{request.user.full_name}}</li>
+              <li class="dropdown-header"> Logged in as {% cover_user_name %}</li>
               {% if user_is_tutor %}
                 <li><a href="{% url 'tutors:offer_update' %}"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Profile</a></li>
               {% else %}

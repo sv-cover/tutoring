@@ -59,7 +59,12 @@ class MessageCreateView(CreateView):
         conversation = self.object.conversation
         participants = list(conversation.participants.all())
         for p in participants:
-            sender = self.object.sender.full_name if p != self.request.user else 'You'
+            if not self.object.appears_anonymous:
+                sender = self.object.sender.full_name
+            elif p == self.request.user:
+                'You'
+            else:
+                sender = 'Anonymous'
             msg = '*%s* @ %s:\n%s' % (sender, conversation.subject, self.object.message)
 
             if p.telegram_chat_id:

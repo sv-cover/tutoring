@@ -67,23 +67,17 @@ class CoverMember(AbstractBaseUser):
     @property
     def full_name(self):
         """ Convenience method, returns the full name """
-
-        if self.appears_anonymous:
-            return 'Anonymous'
-        else:
-            return u'{} {}'.format(self.first_name, self.last_name)
+        return u'{} {}'.format(self.first_name, self.last_name)
 
     @property
     def is_unknown(self):
         """ Provide distinction from Cover members who are unknown to the system. """
         return False
 
+    @property
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
-        if self.appears_anonymous:
-            return static('default_profile_400.png')
-        else:
-            return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
+        return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
 
     def update_telegram_bot_token(self):
         self.telegram_id_counter += 1
@@ -96,6 +90,9 @@ class CoverMember(AbstractBaseUser):
         self.telegram_bot_token =  hasher.hexdigest()
 
         print(self.telegram_bot_token)
+
+    def __eq__(self, other):
+        return self.cover_id == other.cover_id
 
 
 class UnknownCoverMember(AnonymousUser):

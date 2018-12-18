@@ -1,3 +1,4 @@
+{% load cover_util %}
 <style type="text/css">
 a {
   color:#36749D;
@@ -13,7 +14,7 @@ a {
   <table>
     {% for msg in conv.last_5_messages %}
     <tr>
-      <td>{{msg.sender.first_name}}:&nbsp;&nbsp;&nbsp;</td>
+      <td>{% cover_user_name user=msg.sender %}:&nbsp;&nbsp;&nbsp;</td>
       <td>{{msg.message}}</td>
     </tr>
     {% endfor %}
