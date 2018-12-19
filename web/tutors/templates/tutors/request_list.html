@@ -3,6 +3,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% load cover_util %}
+{% load request_link %}
 
 {% block head_title %}
 Requests
@@ -90,11 +91,11 @@ Requests
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 								Make offer
 							</a>
-	            {% else %}
-	            <a href="{% url "messages:conversation_create" %}?to={{t_request.owner.cover_id}}" class="btn btn-success" role="button">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
-								Make offer
-							</a>
+							{% else %}
+								<a href="{% create_request_link request=t_request %}" class="btn btn-success" role="button">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+									Make offer
+								</a>
 	            {% endif %}
 	          </div>
 		      </div>
