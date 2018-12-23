@@ -3,14 +3,16 @@ from django import template
 
 register = template.Library()
 
-def _get_name(context, user=None, personalise=False):
+def _get_name(context, user=None, personalise=False, current_user=None):
     """ Gets the name of the user and anomynises it when needed. """
+    if current_user is None:
+        current_user = context.get('request').user
     if user is None:
         user = context.get('request').user
-    if user.appears_anonymous and (user != context.get('request').user):
+    if user.appears_anonymous and (user != current_user):
         return 'Anonymous'
 
-    if personalise and (user == context.get('request').user):
+    if personalise and (user == current_user):
         return 'You'
     
     return user.full_name
