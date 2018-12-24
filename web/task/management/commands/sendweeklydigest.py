@@ -28,7 +28,7 @@ class Command(BaseCommand):
         mail_template_plain = get_template('maildigest/weekly_digest.txt')
         mail_template_html = get_template('maildigest/weekly_digest.html')
 
-        for user in CoverMember.objects.filter(receives_weekly_mails=True):
+        for user in CoverMember.objects.filter(receives_weekly_mails=True, is_active=True):
 
             conversations = list(Conversation.objects.conversations_of(user))
             conversations = [c for c in conversations
