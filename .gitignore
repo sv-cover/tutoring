@@ -27,3 +27,7 @@ venv/
 api\.php
 
 data\.json
+
+web/messages/migrations/
+
+web/tutors/migrations/

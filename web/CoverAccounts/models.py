@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, AnonymousUser
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.db import models
+from datetime import datetime
 
 from hashlib import sha1
 
@@ -93,6 +94,32 @@ class CoverMember(AbstractBaseUser):
 
     def __eq__(self, other):
         return self.cover_id == other.cover_id
+
+    def update_member(self, session_user):
+        self.email = session_user['email']
+        self.first_name = session_user['voornaam']
+
+        if session_user['tussenvoegsel'] == "":
+            self.last_name = session_user['achternaam']
+        else:
+            self.last_name = "{tussenvoegsel} {achternaam}".format(**session_user)
+
+        if session_user['member_till'] is None and not self.is_active:
+            self.is_active = True
+        elif session_user['member_till'] is not None:
+            member_till = datetime.strptime(session_user['member_till'], '%Y-%m-%d')
+            if datetime.now() > member_till:
+                self.is_active = False
+       
+        if session_user['email'] in settings.STAFF_MEMBERS:
+            self.is_staff = True
+            self.is_admin = True
+
+        if any(c in session_user['committees'] for c in settings.ADMIN_COMMITTEES):
+            self.is_staff = True
+            self.is_admin = True
+
+        self.save()
 
 
 class UnknownCoverMember(AnonymousUser):
