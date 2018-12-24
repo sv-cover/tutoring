@@ -1,6 +1,7 @@
-Good morning {{user.first_name}}!
+{% load cover_util %}
+Hi {{user.first_name}}!
 
-Here is what happened yesterday on CACTuS, Cover's tutor finder.
+Here is what happened this week on CACTuS, Cover's tutor finder.
 To summarize, you have {{n_conversations}} ongoing conversations with unread messages.
 
 Here they are:
@@ -8,7 +9,7 @@ Here they are:
 {% for conv in conversations %}
   {{conv.subject}}
 {% for msg in conv.last_5_messages %}
-  > {{msg.sender.full_name}}: {{msg.message}}
+  > {% cover_user_name user=msg.sender personalise=True current_user=user %}: {{msg.message}}
 {% endfor %}
   > Reply here: https://tutoring.svcover.nl/messages/{{conv.pk}}{% endfor %}
 

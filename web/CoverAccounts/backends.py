@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
+from datetime import datetime
 
 from .models import CoverMember
 
+import logging
 
 class EmailAuthBackend(object):
     """
@@ -48,15 +50,7 @@ class CoversiteAuthBackend:
         except CoverMember.DoesNotExist:
             return None
 
-        cover_member.email = session.user['email']
-        cover_member.first_name = session.user['voornaam']
-
-        if session.user['tussenvoegsel'] == "":
-            cover_member.last_name = session.user['achternaam']
-        else:
-            cover_member.last_name = "{tussenvoegsel} {achternaam}".format(**session.user)
-
-        cover_member.save()
+        cover_member.update_member(session.user)
         
         return cover_member
 

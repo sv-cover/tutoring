@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 from django.utils import timezone
 
-from django.core.management.base import BaseCommand, CommandError
-from django.core.mail import send_mail, send_mass_mail
+from django.core.management.base import BaseCommand
+from django.core.mail import send_mass_mail
 from django.core.mail import get_connection, EmailMultiAlternatives
 
-from messages.models import Conversation, Message
+from messages.models import Conversation
 from CoverAccounts.models import CoverMember
 from django.template import Context
 from django.template.loader import get_template
@@ -18,24 +18,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        self.stdout.write('{} - Start executing Weekly Email Digest command.\nSend emails to the following users:'.format(datetime.now(timezone.utc)))
+        self.stdout.write('{} - Start executing Daily Email Digest command.\nSend emails to the following users:'.format(datetime.now(timezone.utc)))
 
         messages_to_send = []
 
-        email_subject = 'CACTuS - Here is what happened'
+        email_subject = 'CACTuS - Daily update'
         email_from = 'tutoring@svcover.nl'
 
-        mail_template_plain = get_template('maildigest/weekly_digest.txt')
-        mail_template_html = get_template('maildigest/weekly_digest.html')
+        mail_template_plain = get_template('task/daily_digest.txt')
+        mail_template_html = get_template('task/daily_digest.html')
 
-        for user in CoverMember.objects.filter(receives_weekly_mails=True):
+        for user in CoverMember.objects.filter(receives_daily_mails=True, is_active=True):
 
             conversations = list(Conversation.objects.conversations_of(user))
             conversations = [c for c in conversations
                              if c.latest_message()
                              and not user in c.latest_message().read_by.all()
                              and datetime.now(timezone.utc) - c.latest_message().sent_at
-                             <= timedelta(days=7)]
+                             <= timedelta(hours=24)]
 
             if len(conversations) == 0:
                 continue
@@ -59,4 +59,5 @@ class Command(BaseCommand):
         with get_connection() as connection:
             connection.send_messages(messages_to_send)
 
-        self.stdout.write('Done! Mails successfully sent to {n} people!\n{t} - Done.\n---'.format(n=len(messages_to_send), t=datetime.now()))
+        self.stdout.write('Done! Mails successfully sent to {n} people!\n{t} - Done.\n---'.
+                          format(n=len(messages_to_send), t=datetime.now()))

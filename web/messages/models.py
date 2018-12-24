@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from CoverAccounts.models import CoverMember
+from tutors.models import Request
 
 class ConversationManager(models.Manager):
     '''
@@ -32,6 +33,8 @@ class Conversation(models.Model):
     subject = models.CharField('Subject', max_length=140)
 
     participants = models.ManyToManyField(CoverMember, blank=True)
+
+    request = models.ForeignKey(Request, default=None, related_name='conversations', null=True)
 
     objects = ConversationManager()
 

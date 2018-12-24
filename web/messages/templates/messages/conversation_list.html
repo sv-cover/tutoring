@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load cover_util %}
+
 
 {% block head_title %}
 Inbox
@@ -29,7 +31,7 @@ Inbox
 
     <td>
       {% for participant in conversation.participants.all %}
-        <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
+        <img src="{% cover_foto_url user=participant %}" alt="Portrait of {% cover_user_name user=participant %}" height="30" width="30" class="img-circle"/>
       {% endfor %}
     </td>
 
@@ -45,7 +47,7 @@ Inbox
       &bull;
       {% if conversation.latest_message %}
         {{conversation.latest_message.sent_at | timesince}} ago
-        <span class="message-preview">{{conversation.latest_message.sender.full_name}}:
+        <span class="message-preview">{% cover_user_name user=conversation.latest_message.sender %}:
           {{conversation.latest_message.message}}</span>
       {% else %}
         No messages yet!

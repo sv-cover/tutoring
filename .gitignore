@@ -23,3 +23,11 @@ Virtualenv
 development_db
 *.pyc
 venv/
+
+api\.php
+
+data\.json
+
+web/messages/migrations/
+
+web/tutors/migrations/

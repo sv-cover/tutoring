@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
 from CoverAccounts.models import CoverMember
+from tutors.models import Request
 from .models import Message, Conversation
 from .forms import MessageForm, ConversationForm
 
@@ -22,6 +23,13 @@ class ConversationCreateView(CreateView):
     def get_recipient(self):
                 recipient_id = self.request.GET.get("to")
                 return get_object_or_404(CoverMember, cover_id=recipient_id)
+
+    def get_request(self):
+                request_id = self.request.GET.get("request")
+                if request_id:
+                    return get_object_or_404(Request, id=request_id)
+                else:
+                    return None
 
     def get_context_data(self, **kwargs):
         recipient = self.get_recipient()
@@ -35,6 +43,9 @@ class ConversationCreateView(CreateView):
     def form_valid(self, form):
 
         recipient = self.get_recipient()
+        request = self.get_request()
+        
+        form.instance.request = request
 
         response = super(ConversationCreateView, self).form_valid(form)
 
@@ -59,7 +70,12 @@ class MessageCreateView(CreateView):
         conversation = self.object.conversation
         participants = list(conversation.participants.all())
         for p in participants:
-            sender = self.object.sender.full_name if p != self.request.user else 'You'
+            if not p.appears_anonymous:
+                sender = p.full_name
+            elif p == self.request.user:
+                sender = 'You'
+            else:
+                sender = 'Anonymous'
             msg = '*%s* @ %s:\n%s' % (sender, conversation.subject, self.object.message)
 
             if p.telegram_chat_id:

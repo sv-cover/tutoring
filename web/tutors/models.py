@@ -39,6 +39,10 @@ class Offer(models.Model):
     # # TODO
     description = models.TextField()
 
+    @property
+    def active(self):
+        return not (not self.is_listed or not self.owner.is_active)
+
     def get_absolute_url(self):
         '''  ''' #TODO
 
@@ -69,6 +73,10 @@ class Request(models.Model):
 
     # TODO
     created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def active(self):
+        return self.owner.is_active
 
     def get_absolute_url(self):
         '''  ''' #TODO

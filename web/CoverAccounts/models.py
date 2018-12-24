@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, AnonymousUser
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.db import models
+from datetime import datetime
 
 from hashlib import sha1
 
@@ -67,23 +68,17 @@ class CoverMember(AbstractBaseUser):
     @property
     def full_name(self):
         """ Convenience method, returns the full name """
-
-        if self.appears_anonymous:
-            return 'Anonymous'
-        else:
-            return u'{} {}'.format(self.first_name, self.last_name)
+        return u'{} {}'.format(self.first_name, self.last_name)
 
     @property
     def is_unknown(self):
         """ Provide distinction from Cover members who are unknown to the system. """
         return False
 
+    @property
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
-        if self.appears_anonymous:
-            return static('default_profile_400.png')
-        else:
-            return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
+        return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
 
     def update_telegram_bot_token(self):
         self.telegram_id_counter += 1
@@ -96,6 +91,35 @@ class CoverMember(AbstractBaseUser):
         self.telegram_bot_token =  hasher.hexdigest()
 
         print(self.telegram_bot_token)
+
+    def __eq__(self, other):
+        return self.cover_id == other.cover_id
+
+    def update_member(self, session_user):
+        self.email = session_user['email']
+        self.first_name = session_user['voornaam']
+
+        if session_user['tussenvoegsel'] == "":
+            self.last_name = session_user['achternaam']
+        else:
+            self.last_name = "{tussenvoegsel} {achternaam}".format(**session_user)
+
+        if session_user['member_till'] is None and not self.is_active:
+            self.is_active = True
+        elif session_user['member_till'] is not None:
+            member_till = datetime.strptime(session_user['member_till'], '%Y-%m-%d')
+            if datetime.now() > member_till:
+                self.is_active = False
+       
+        if session_user['email'] in settings.STAFF_MEMBERS:
+            self.is_staff = True
+            self.is_admin = True
+
+        if any(c in session_user['committees'] for c in settings.ADMIN_COMMITTEES):
+            self.is_staff = True
+            self.is_admin = True
+
+        self.save()
 
 
 class UnknownCoverMember(AnonymousUser):
@@ -141,6 +165,11 @@ class UnknownCoverMember(AnonymousUser):
         cover_member.last_name = self.last_name
 
         if cover_member.email in settings.STAFF_MEMBERS:
+            cover_member.is_staff = True
+            cover_member.is_admin = True
+
+        print 'Committees: ' + str(self.cover_session.user['committees'])
+        if any(c in self.cover_session.user['committees'] for c in settings.ADMIN_COMMITTEES):
             cover_member.is_staff = True
             cover_member.is_admin = True
 

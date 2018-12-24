@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 
 from tutors.models import Subject, Request
 from tutors.forms import RequestForm
+from CoverAccounts.models import CoverMember
 
 class RequestListView(ListView):
     ''' ''' #TODO
@@ -14,8 +15,9 @@ class RequestListView(ListView):
     def get_queryset(self):
         subjects = list(Subject.objects.all())
         requests_per_subject = []
+        users = CoverMember.objects.filter(is_active=True)
         for subject in subjects:
-            requests = list(Request.objects.filter(subject=subject))
+            requests = list(Request.objects.filter(subject=subject, owner=users))
             if len(requests) > 0:
                 requests_per_subject += [{'subject':subject, 'requests':requests}]
 

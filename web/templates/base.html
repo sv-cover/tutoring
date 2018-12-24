@@ -1,4 +1,5 @@
 {% load tutor_extras %}
+{% load cover_util %}
 {% get_user_is_tutor as user_is_tutor %}
 
 <!DOCTYPE html>
@@ -111,8 +112,8 @@
                   <td>
                     {% for participant in conversation.participants.all %}
                       <a href="{{conversation.get_absolute_url}}"
-                        title="{{participant.full_name}}">
-                      <img src="{{participant.foto_url}}" alt="Portrait of {{participant.full_name}}" height="30" width="30" class="img-circle"/>
+                        title="{% cover_user_name user=participant %}">
+                      <img src="{% cover_foto_url user=participant %}" alt="Portrait of {% cover_user_name user=participant %}" height="30" width="30" class="img-circle"/>
                       </a>
                     {% endfor %}
                   </td>
@@ -126,7 +127,7 @@
                         {% if user != conversation.latest_message.sender %}
                         <span class="label label-info">new</span>
                         {% endif %}
-                      {% endif %} {{conversation.latest_message.sender.full_name}},<br/>
+                      {% endif %} {% cover_user_name user=conversation.latest_message.sender %},<br/>
                     {{conversation.latest_message.sent_at | timesince}} ago
                     {% else %}
                     No messages yet!
@@ -203,6 +204,17 @@
             </div>
           </div>
           {% endif %}
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  CACTuS Development
+                </h3>
+              </div>
+              <div class="panel-body">
+                <p>Want to contribute to the development of the website?</p>
+                <a href="https://github.com/StudCee/tutoring">You can find the source on Github</a>.
+              </div>
+          </div>
           <!-- <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'CoverAccounts',
     'messages',
     'tutors',
-    'maildigest',
+    'task',
     'telegram_bot'
 ]
 
@@ -134,6 +134,7 @@ STATIC_ROOT = '/home/commissies/studcee/studcee-tutoring/static'
 AUTH_USER_MODEL = 'CoverAccounts.CoverMember'
 AUTHENTICATION_BACKENDS = ['CoverAccounts.backends.CoversiteAuthBackend', ]
 
+ADMIN_COMMITTEES = ['studcee']
 STAFF_MEMBERS = ['rafael@bankosegger.at', 'emily.beuken@gmail.com']
 
 # Cover API settings
@@ -158,7 +159,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 
 
 TELEGRAM_BOT_API_TOKEN = '<secret>'
