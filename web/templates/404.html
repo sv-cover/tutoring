@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+Page Not Found Error 404
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger">
+	<h1>Page Not Found Error 404</h3>
+	<p>The url {{request_path}} was not found.</p>
+	<p>Contact us with a full explanation of what happend and the error code at:</p>
+	<p><a href='mailto:tutoring@svcover.nl'><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> tutoring@svcover.nl</a></p>
+</div>
+{% endblock %}
