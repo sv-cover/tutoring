@@ -25,8 +25,8 @@ class Command(BaseCommand):
         email_subject = 'CACTuS - Daily update'
         email_from = 'tutoring@svcover.nl'
 
-        mail_template_plain = get_template('task/daily_digest.txt')
-        mail_template_html = get_template('task/daily_digest.html')
+        mail_template_plain = get_template('maildigest/daily_digest.txt')
+        mail_template_html = get_template('maildigest/daily_digest.html')
 
         for user in CoverMember.objects.filter(receives_daily_mails=True, is_active=True):
 
