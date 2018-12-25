@@ -31,3 +31,5 @@ data\.json
 web/messages/migrations/
 
 web/tutors/migrations/
+
+web/tutoring/settings\.py

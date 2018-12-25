@@ -164,3 +164,55 @@ EMAIL_USE_TLS = False
 
 TELEGRAM_BOT_API_TOKEN = '<secret>'
 TELEGRAM_HASH_SALT = '<secret>'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+		'require_debug_false': {
+			'()': 'django.utils.log.RequireDebugFalse',
+		},
+		'require_debug_true': {
+			'()': 'django.utils.log.RequireDebugTrue',
+		},
+	},
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s", 'datefmt': "%d/%b/%Y %H:%M:%S"
+        }, 
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file_info': {
+            'level': 'INFO', 
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs", 'info_log.log'), 
+            'formatter': 'verbose'
+        }, 
+        'file_error': {
+            'level': 'ERROR', 
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs", 'error_log.log'), 
+            'formatter': 'verbose'
+        },
+        'console': {
+			'level': 'INFO',
+			'filters': ['require_debug_true'],
+			'class': 'logging.StreamHandler',
+		},
+    }, 
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file_info'], 
+            'propagate': True, 
+            'level': 'INFO', 
+        }, 
+        'django_error': {
+            'handlers': ['file_error'], 
+            'propagate': True, 
+            'level': 'ERROR', 
+        }, 
+    }, 
+}

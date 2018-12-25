@@ -17,7 +17,7 @@ class RequestListView(ListView):
         requests_per_subject = []
         users = CoverMember.objects.filter(is_active=True)
         for subject in subjects:
-            requests = list(Request.objects.filter(subject=subject, owner=users))
+            requests = list(Request.objects.filter(subject=subject, owner__in=users))
             if len(requests) > 0:
                 requests_per_subject += [{'subject':subject, 'requests':requests}]
 
