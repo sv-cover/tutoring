@@ -8,7 +8,7 @@ a {
 <div style="font-family: sans-serif;">
   <h1 style="color:#C8102E;">Good morning {{user.first_name}}!</h1>
   <p>Here is what happened yesterday on CACTuS, Cover's tutor finder.</p>
-  <p>To summarize, you have {{n_conversations}} ongoing conversations with unread messages. Here they are:</p>
+  <p>To summarize, you have {{n_conversations}} ongoing {% if n_conversations > 1 %}conversations{% else %}conversation{%endif%} with {% if n_conversations > 1 or conversations.0.last_5_messages.len > 1 %}unread messages{% else %}an unread message{% endif %}. Here they are:</p>
   <div style="background:#DADADA; margin: 20px 0px; padding: 0px 20px 20px 20px;">{% for conv in conversations %}
   <h3 style="padding-top: 20px;">{{conv.subject}}</a></h3>
   <table>

@@ -150,6 +150,7 @@
           </div>
           {% endif %}
 
+          {% if request.user.telegram_chat_id is None %}
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Get notified about new messages</h3>
@@ -160,6 +161,7 @@
               <p><a class="btn btn-primary" href="https://telegram.me/cover_tutoring_bot?start={{request.user.telegram_bot_token}}"> <i class="fa fa-telegram" aria-hidden="true"></i> Connect to Telegram </a></p>
             </div>
           </div>
+          {% endif %}
 
           <div class="panel panel-default">
             <div class="panel-heading">

@@ -2,7 +2,7 @@
 Hi {{user.first_name}}!
 
 Here is what happened this week on CACTuS, Cover's tutor finder.
-To summarize, you have {{n_conversations}} ongoing conversations with unread messages.
+To summarize, you have {{n_conversations}} ongoing {% if n_conversations > 1 %}conversations{% else %}onversation{%endif%} with {% if n_conversations > 1 or conversations.0.last_5_messages.len > 1 %}unread messages{% else %}an unread message{% endif %}.
 
 Here they are:
 

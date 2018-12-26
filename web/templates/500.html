@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+Internal Server Error 500
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger">
+	<h1>Internal server error - 500</h1>
+	<p>An internal server error occured.</p>
+	<p>Contact us with a full explanation of what happend and the error code at:</p>
+	<p><a href='mailto:tutoring@svcover.nl'><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> tutoring@svcover.nl</a></p>
+</div>
+{% endblock %}
