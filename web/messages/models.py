@@ -34,7 +34,7 @@ class Conversation(models.Model):
 
     participants = models.ManyToManyField(CoverMember, blank=True)
 
-    request = models.ForeignKey(Request, default=None, related_name='conversations', null=True)
+    request = models.ForeignKey(Request, default=None, related_name='conversations', null=True, on_delete=models.SET_NULL)
 
     objects = ConversationManager()
 
