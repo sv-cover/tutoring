@@ -8,8 +8,6 @@ services:
     restart: always
     ports:
       - 8000:8000
-    depends_on:
-      - db
     volumes:
       - ./web:/app/web
     command: bash -c "python /app/web/manage.py migrate --noinput && python /app/web/manage.py runserver 0.0.0.0:8000"
