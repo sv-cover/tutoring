@@ -1,35 +1,29 @@
-version: '2'
+version: '3.9'
 services:
-  web:
-    container_name: studcee-tut-web
+  tutoring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tutoring-main
     restart: always
-    build: ./web
-    expose:
-      - "80"
-    depends_on:
-      - db
-    volumes:
-      - ./web:/usr/src/app
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && pip install pyyaml && python manage.py collectstatic --no-input && python manage.py loaddata languages.yaml && python manage.py loaddata subjects.yaml &&  gunicorn tutoring.wsgi -b 0.0.0.0:80"
-
-  nginx:
-    container_name: studcee-tut-nginx
-    restart: always
-    build: ./nginx
     ports:
-      - "80:80"
+      - 8000:8000
     volumes:
-      - /static
-    volumes_from:
-      - web
-    depends_on:
-      - web
+      - ./web:/app/web
+    command: bash -c "python /app/web/manage.py migrate --noinput && python /app/web/manage.py runserver 0.0.0.0:8000"
+    networks:
+      - tutoring
 
-  db:
-    container_name: studcee-tut-db
-    restart: always
-    image: postgres:latest
-    # ports:
-    #   - "5432:5432"
-    # volumes:
-    #   - pgdata:/var/lib/postgresql/data/
+  coverapi:
+    image: php:7.4-cli
+    container_name: tutoring-coverapi
+    volumes:
+      - ./coverapi:/app
+    ports:
+      - 8001:8001
+    command: bash -c "cd /app && php -S 0.0.0.0:8001/"
+    networks:
+      - tutoring
+
+networks:
+  tutoring:
