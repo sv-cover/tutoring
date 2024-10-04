@@ -78,7 +78,7 @@ class CoverMember(AbstractBaseUser):
     @property
     def foto_url(self):
         ''' Returns the  user's profile foto from cover website '''
-        return '//svcover.nl/foto.php?lid_id={}&format=square&width=120'.format(self.cover_id)
+        return '//svcover.nl/profile/{}/picture/square/64'.format(self.cover_id)
 
     def update_telegram_bot_token(self):
         self.telegram_id_counter += 1
