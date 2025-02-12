@@ -147,7 +147,7 @@ if DEBUG:
     COVER_API_APP = 'test-app'
     COVER_API_SECRET = 'ultrasecrethashkey'
 else:
-    COVER_API_URL = 'https://www.svcover.nl/api.php'
+    COVER_API_URL = 'https://www.svcover.nl/api'
 
     COVER_API_APP = 'coverapi'
 

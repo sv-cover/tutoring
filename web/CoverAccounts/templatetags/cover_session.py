@@ -33,12 +33,12 @@ def _cover_session_url(base, context=None, next_url=None, next_field='referrer')
 @register.simple_tag(takes_context=True)
 def cover_login_url(context, **kwargs):
     """ Provides a shortcut for the Cover login url """
-    base = getattr(settings, 'COVER_LOGIN_URL', 'https://www.svcover.nl/sessions.php?view=login')
+    base = getattr(settings, 'COVER_LOGIN_URL', 'https://www.svcover.nl/login')
     return _cover_session_url(base, context=context, **kwargs)
 
 
 @register.simple_tag(takes_context=True)
 def cover_logout_url(context, **kwargs):
     """ Provides a shortcut for the Cover logout url """
-    base = getattr(settings, 'COVER_LOGOUT_URL', 'https://www.svcover.nl/sessions.php?view=logout')
+    base = getattr(settings, 'COVER_LOGOUT_URL', 'https://www.svcover.nl/logout')
     return _cover_session_url(base, context=context, **kwargs)
